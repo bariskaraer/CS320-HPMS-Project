@@ -1,16 +1,16 @@
-<?php if (empty($_SESSION['course_adminID'])){Header ("Location: ".$url."/giris");}?>
+<?php if (empty($_SESSION['course_adminID'])){Header ("Location: ".$url."/login");}?>
  <?
 	
 if ($_POST){
 	
 	
 	
-	$studentName 				= $_POST['studentName'];
-	$studentSurname 			= $_POST['studentSurname'];
+	$patientName 				= $_POST['patientName'];
+	$patientSurname 			= $_POST['patientSurname'];
 
 
 $regDate=date("Y/m/d");
-$queryss = $db->prepare("INSERT INTO students( studentID,studentName,studentSurname) values (?,?,?)");
+$queryss = $db->prepare("INSERT INTO patients(studentID,patientName,patientSurname,patientDisease) values (?,?,?,?)");
 $insertss=$queryss->execute(array($studentID, $studentName, $studentSurname));
 
 
@@ -150,21 +150,21 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 
 												<!--begin: Form Wizard Step 1-->
 												<div class="kt-wizard-v3__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-													<div class="kt-heading kt-heading--md">Öğrenci Bilgilerini Giriniz</div>
+													<div class="kt-heading kt-heading--md">Please Fill in the Patient Form</div>
 													<div class="kt-form__section kt-form__section--first">
 														<div class="kt-wizard-v3__form">
 															<div class="row"> 
 	                                        <div class="col-md-6">   
 	                                        	<div class="form-group">
-													<label for="complaintinput1">Öğrenci Adı : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput1" class="form-control " name="studentName" >
+													<label for="complaintinput1">Patient Name : <span class="danger">*</span></label>
+													<input type="text" id="complaintinput1" class="form-control " name="patientName" >
 													
 												</div>
 											</div>
 	                                        <div class="col-md-6">   
 		                                        <div class="form-group">
-													<label for="complaintinput2">Öğrenci Soyadı : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput2" class="form-control "  name="studentSurname">
+													<label for="complaintinput2">Patient Surname : <span class="danger">*</span></label>
+													<input type="text" id="complaintinput2" class="form-control "  name="patientSurname">
 												</div>
 											</div>
 										</div>
