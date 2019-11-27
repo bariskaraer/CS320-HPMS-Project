@@ -7,11 +7,19 @@ if ($_POST){
 	
 	$patientName 				= $_POST['patientName'];
 	$patientSurname 			= $_POST['patientSurname'];
+	$dateofbirth 				= $_POST['dateofbirth'];
+	$bloodType 					= $_POST['bloodType'];
+	$address 					= $_POST['address'];
+	$telephoneNumber 			= $_POST['telephoneNumber'];
+	$treatmentPlan 				= $_POST['treatmentPlan'];
+	$medicineProblems 			= $_POST['medicineProblems'];
+	$identityNumber 			= $_POST['identityNumber'];
 
 
 $regDate=date("Y/m/d");
-$queryss = $db->prepare("INSERT INTO patients(studentID,patientName,patientSurname,patientDisease) values (?,?,?,?)");
-$insertss=$queryss->execute(array($studentID, $studentName, $studentSurname));
+
+$queryss = $db->prepare("INSERT INTO patients(patientName,patientSurname,dateBirth,bloodType,address,telephoneNumber,treatmentPlan,medicineProblems,identityNumber) values (?,?,?,?,?,?,?,?,?)");
+$insertss=$queryss->execute(array($patientName,$patientSurname,$dateofbirth,$bloodType,$address,$telephoneNumber,$treatmentPlan,$medicineProblems,$identityNumber));
 
 
 
