@@ -7,7 +7,7 @@ session_start();
 
 
 try {
-	$db = new PDO("mysql:host=localhost;dbname=ecedis;charset=utf8", "root", "39782917");
+	$db = new PDO("mysql:host=85.95.237.107;dbname=krakerso_hpms;charset=utf8", "krakerso_hpms", "barisokulproje2019");
 	 $db->query("SET CHARACTER SET utf8");
 	$db->query("SET NAMES utf8'");
 $db->query("SET COLLATION_CONNECTION = 'utf8_unicode_ci'");
@@ -26,7 +26,7 @@ if($ctr = $ct->fetch())
 */
 
 
-$url="http://localhost/dentalPlaning";
+$url="http://localhost/HPMS";
 $aUrl=$url."/major";
 $pUrl=$url."/minor";
 ?>
