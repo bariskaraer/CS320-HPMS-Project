@@ -1,5 +1,5 @@
 <?php
-    define('BASE_URL', 'http://localhost/CS320-HPMS-Project/minor');
+    define('BASE_URL', 'http://localhost/minor');
 ?>
 
 
