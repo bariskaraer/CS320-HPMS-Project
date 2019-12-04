@@ -266,6 +266,50 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!--begin::Page Scripts(used by this page) -->
                           
                         <!--end::Page Scripts -->
+						</div>
+
+	<!--begin::Portlet-->
+	<div class="kt-portlet">
+			<div class="kt-portlet__head">
+				<div class="kt-portlet__head-label">
+					<h3 class="kt-portlet__head-title">
+						Small Table
+					</h3>
+				</div>
+			</div>
+			<div class="kt-portlet__body">
+				<!--begin::Section-->
+				<div class="kt-section">
+					<span class="kt-section__info">
+						Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.
+					</span>
+					<div class="kt-section__content">
+						<table class="table table-sm table-head-bg-brand">
+						  	<thead class="thead-inverse">
+						    	<tr>
+						      		<th>#</th>
+						      		<th>Name</th>
+						      		<th>Surname</th>
+						      		<th>Date of birth</th>
+									<th>BloodType</th>
+									<th>Address</th>
+									<th>Telephone Number</th>
+									<th>Appoinments</th>
+									<th>Treatment Plan</th>
+									<th>Medicine Problem Replies</th>  
+									<th>Identity Number</th>
+						    	</tr>
+						  	</thead>
+						  	<tbody>
+						    
+						  	</tbody>
+						</table>
+					</div>
+				</div>
+				<!--end::Section-->
+			</div>
+		</div>	
+		<!--end::Portlet-->
 	</body>
 
 	<!-- end::Body -->
