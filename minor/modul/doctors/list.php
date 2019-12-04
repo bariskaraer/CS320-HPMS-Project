@@ -111,31 +111,58 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>		</div>
 	</div>
 
-	<div class="kt-portlet__body">
-		<!--begin: Datatable -->
-					<table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
-						<thead>
-			  						<tr>
-				  									<th>ID</th>
-				  									<th>Öğrenci Adı</th>
-				  									<th>Öğrenci Soyadı</th>
-				  									<th>Actions</th>
-				  						</tr>
-						</thead>
-						<tbody>
-										<tr>
-				  									<td>50</td>
-				  									<td>btummasutti1d@google.es</td>
-				  									<td>Bliss Tummasutti</td>
-				  									<td>Legros-Cummings</td>
-				  									<td>5</td>
-				  									<td>1</td>
-				  									<td nowrap></td>
-				  						</tr>
-						</tbody>
-					</table>
-		<!--end: Datatable -->
-	</div>
+	<!--begin::Portlet-->
+	<div class="kt-portlet">
+			<div class="kt-portlet__head">
+				<div class="kt-portlet__head-label">
+					<h3 class="kt-portlet__head-title">
+						Small Table
+					</h3>
+				</div>
+			</div>
+			<div class="kt-portlet__body">
+				<!--begin::Section-->
+				<div class="kt-section">
+					<span class="kt-section__info">
+						Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.
+					</span>
+					<div class="kt-section__content">
+						<table class="table table-sm table-head-bg-brand">
+						  	<thead class="thead-inverse">
+						    	<tr>
+						      		<th>#</th>
+						      		<th>First Name</th>
+						      		<th>Last Name</th>
+						      		<th>Username</th>
+						    	</tr>
+						  	</thead>
+						  	<tbody>
+						    	<tr>
+							      	<th scope="row">1</th>
+							      	<td>Jhon</td>
+							      	<td>Stone</td>
+							      	<td>@jhon</td>
+						    	</tr>
+						    	<tr>
+						      		<th scope="row">2</th>
+						      		<td>Lisa</td>
+						      		<td>Nilson</td>
+						      		<td>@lisa</td>
+						    	</tr>
+						    	<tr>
+						      		<th scope="row">3</th>
+						      		<td>Larry</td>
+						      		<td>the Bird</td>
+						      		<td>@twitter</td>
+						    	</tr>
+						  	</tbody>
+						</table>
+					</div>
+				</div>
+				<!--end::Section-->
+			</div>
+		</div>	
+		<!--end::Portlet-->
 </div>	
 					<? require 'minor/footer.php'; ?>
 					<!-- end:: Footer -->
