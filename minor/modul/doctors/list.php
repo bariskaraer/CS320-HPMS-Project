@@ -131,30 +131,19 @@ License: You must have a valid license purchased only from themeforest(the above
 						  	<thead class="thead-inverse">
 						    	<tr>
 						      		<th>#</th>
-						      		<th>First Name</th>
-						      		<th>Last Name</th>
-						      		<th>Username</th>
+						      		<th>Name</th>
+						      		<th>Surname</th>
+						      		<th>Date of birth</th>
+									<th>Address</th>
+									<th>Telephone Number</th>
+									<th>Patients</th>
+									<th>Appointments</th>
+									<th>Medicine Problem Replies</th>  
+									<th>Identity Number</th>
 						    	</tr>
 						  	</thead>
 						  	<tbody>
-						    	<tr>
-							      	<th scope="row">1</th>
-							      	<td>Jhon</td>
-							      	<td>Stone</td>
-							      	<td>@jhon</td>
-						    	</tr>
-						    	<tr>
-						      		<th scope="row">2</th>
-						      		<td>Lisa</td>
-						      		<td>Nilson</td>
-						      		<td>@lisa</td>
-						    	</tr>
-						    	<tr>
-						      		<th scope="row">3</th>
-						      		<td>Larry</td>
-						      		<td>the Bird</td>
-						      		<td>@twitter</td>
-						    	</tr>
+						    
 						  	</tbody>
 						</table>
 					</div>
