@@ -1,4 +1,4 @@
-<?php if (empty($_SESSION['course_adminID'])){Header ("Location: ".$url."/login");}?>
+<?php if (empty($_SESSION['adminID'])){Header ("Location: ".$url."/login");}?>
  <?
 	
 if ($_POST){
