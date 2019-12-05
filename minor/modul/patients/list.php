@@ -1,4 +1,4 @@
-<?php if (empty($_SESSION['course_adminID'])){Header ("Location: ".$url."/giris");}?>
+<?php if (empty($_SESSION['adminID'])){Header ("Location: ".$url."/login");}?>
 <!DOCTYPE html>
 
 <!-- 
@@ -102,7 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<i class="kt-font-brand flaticon2-line-chart"></i>
 			</span>
 			<h3 class="kt-portlet__head-title">
-				Column Rendering
+				Patient List
 			</h3>
 		</div>
 		<div class="kt-portlet__head-toolbar">
@@ -113,27 +113,55 @@ License: You must have a valid license purchased only from themeforest(the above
 
 	<div class="kt-portlet__body">
 		<!--begin: Datatable -->
-					<table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
-						<thead>
-			  						<tr>
-				  									<th>ID</th>
-				  									<th>Öğrenci Adı</th>
-				  									<th>Öğrenci Soyadı</th>
-				  									<th>Actions</th>
-				  						</tr>
-						</thead>
-						<tbody>
-										<tr>
-				  									<td>50</td>
-				  									<td>btummasutti1d@google.es</td>
-				  									<td>Bliss Tummasutti</td>
-				  									<td>Legros-Cummings</td>
-				  									<td>5</td>
-				  									<td>1</td>
-				  									<td nowrap></td>
-				  						</tr>
-						</tbody>
-					</table>
+					<div class="kt-section">
+												<div class="kt-section__content">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th>Patient ID</th>
+																<th>Name Surname</th>
+																<th>Age</th>
+																<th>Treatment Plan</th>
+																<th>Complaints</th>
+																<th>Action</th>
+																
+																										
+															</tr>
+														</thead>
+														<tbody>
+															<?
+																
+																
+																$query = $db->prepare("SELECT * from patients");
+																$query->execute(array());
+																if ( $query->rowCount() ){
+																foreach( $query as $rows ){
+																	
+																	$patientID		= $rows['patientID'];
+																	$patientName		= $rows['patientName'];
+																	$patientSurname= $rows['patientSurname'];
+																	$patientAge	= $rows['patientAge'];
+																	$patientTreatmentPlan		= $rows['patientTreatmentPlan'];
+																	$patientComplaints		= $rows['patientComplaints'];
+																
+																?>
+															<tr >
+																<td><? echo $patientID ?></td>
+																<td><? echo $patientName ?> <? echo $patientSurname ?></td>
+																<td ><? echo $patientAge ?></td>
+																<td ><? echo $patientTreatmentPlan ?></td>
+																<td ><? echo $patientComplaints ?></td>
+																
+																<td >delete</td>
+															</tr>
+															
+															
+														<?php };}else{echo '<td colspan="7">There are no patients at the moment.</td>';}?>	
+														
+														</tbody>
+													</table>
+												</div>
+											</div>
 		<!--end: Datatable -->
 	</div>
 </div>	
@@ -266,50 +294,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!--begin::Page Scripts(used by this page) -->
                           
                         <!--end::Page Scripts -->
-						</div>
-
-	<!--begin::Portlet-->
-	<div class="kt-portlet">
-			<div class="kt-portlet__head">
-				<div class="kt-portlet__head-label">
-					<h3 class="kt-portlet__head-title">
-						Small Table
-					</h3>
-				</div>
-			</div>
-			<div class="kt-portlet__body">
-				<!--begin::Section-->
-				<div class="kt-section">
-					<span class="kt-section__info">
-						Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.
-					</span>
-					<div class="kt-section__content">
-						<table class="table table-sm table-head-bg-brand">
-						  	<thead class="thead-inverse">
-						    	<tr>
-						      		<th>#</th>
-						      		<th>Name</th>
-						      		<th>Surname</th>
-						      		<th>Date of birth</th>
-									<th>BloodType</th>
-									<th>Address</th>
-									<th>Telephone Number</th>
-									<th>Appoinments</th>
-									<th>Treatment Plan</th>
-									<th>Medicine Problem Replies</th>  
-									<th>Identity Number</th>
-						    	</tr>
-						  	</thead>
-						  	<tbody>
-						    
-						  	</tbody>
-						</table>
-					</div>
-				</div>
-				<!--end::Section-->
-			</div>
-		</div>	
-		<!--end::Portlet-->
 	</body>
 
 	<!-- end::Body -->
