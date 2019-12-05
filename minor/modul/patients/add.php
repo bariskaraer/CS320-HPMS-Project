@@ -18,7 +18,7 @@ if ($_POST){
 
 $regDate=date("Y/m/d");
 
-$queryss = $db->prepare("INSERT INTO patients(patientName,patientSurname,dateBirth,bloodType,address,telephoneNumber,treatmentPlan,medicineProblems,identityNumber) values (?,?,?,?,?,?,?,?,?)");
+$queryss = $db->prepare("INSERT INTO patients(patientName,patientSurname,dateBirth,bloodType,patientAddress,telephoneNumber,patientTreatmentPlan,medicineProblems,identityNumber) values (?,?,?,?,?,?,?,?,?)");
 $insertss=$queryss->execute(array($patientName,$patientSurname,$dateofbirth,$bloodType,$address,$telephoneNumber,$treatmentPlan,$medicineProblems,$identityNumber));
 
 
@@ -137,7 +137,25 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 													<a class="kt-wizard-v3__nav-item" href="#" data-ktwizard-type="step" data-ktwizard-state="current">
 														<div class="kt-wizard-v3__nav-body">
 															<div class="kt-wizard-v3__nav-label">
-																<span>1</span> Öğrenci Bilgileri
+																<span>1</span> Patient Information
+															</div>
+															<div class="kt-wizard-v3__nav-bar"></div>
+														</div>
+													</a>
+
+													<a class="kt-wizard-v3__nav-item" href="#" data-ktwizard-type="step" data-ktwizard-state="current">
+														<div class="kt-wizard-v3__nav-body">
+															<div class="kt-wizard-v3__nav-label">
+																<span>2</span> Personal Information
+															</div>
+															<div class="kt-wizard-v3__nav-bar"></div>
+														</div>
+													</a>
+
+													<a class="kt-wizard-v3__nav-item" href="#" data-ktwizard-type="step" data-ktwizard-state="current">
+														<div class="kt-wizard-v3__nav-body">
+															<div class="kt-wizard-v3__nav-label">
+																<span>3</span> Medical Information
 															</div>
 															<div class="kt-wizard-v3__nav-bar"></div>
 														</div>
@@ -162,19 +180,21 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 													<div class="kt-form__section kt-form__section--first">
 														<div class="kt-wizard-v3__form">
 															<div class="row"> 
-	                                        <div class="col-md-6">   
-	                                        	<div class="form-group">
-													<label for="complaintinput1">Patient Name : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput1" class="form-control " name="patientName" >
-													
-												</div>
-											</div>
-	                                        <div class="col-md-6">   
-		                                        <div class="form-group">
-													<label for="complaintinput2">Patient Surname : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput2" class="form-control "  name="patientSurname">
-												</div>
-											</div>
+
+													<div class="col-md-6">   
+														<div class="form-group">
+															<label for="complaintinput1">Patient Name : <span class="danger">*</span></label>
+															<input type="text" id="complaintinput1" class="form-control " name="patientName" >
+															
+														</div>
+													</div>
+
+													<div class="col-md-6">   
+														<div class="form-group">
+															<label for="complaintinput2">Patient Surname : <span class="danger">*</span></label>
+															<input type="text" id="complaintinput2" class="form-control "  name="patientSurname">
+														</div>
+													</div>
 										</div>
 										
 														</div>
@@ -184,12 +204,89 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 												<!--end: Form Wizard Step 1-->
 
 												<!--begin: Form Wizard Step 2-->
-												
+												<div class="kt-wizard-v3__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+													<div class="kt-heading kt-heading--md">Please Fill in the Patient Form</div>
+													<div class="kt-form__section kt-form__section--first">
+														<div class="kt-wizard-v3__form">
+															<div class="row"> 
+															
+													<div class="col-md-6">   
+														<div class="form-group">
+															<label for="complaintinput1">Date of Birth : <span class="danger">*</span></label>
+															<input type="text" id="complaintinput1" class="form-control " name="dateOfBirth" >
+															
+														</div>
+													</div>
+
+													
+															</div>
+															<div class="row"> 
+															
+													<div class="col-md-6">   
+														<div class="form-group">
+															<label for="complaintinput1">Address : <span class="danger">*</span></label>
+															<input type="text" id="complaintinput1" class="form-control " name="address" >
+															
+														</div>
+													</div>
+
+													<div class="col-md-6">   
+														<div class="form-group">
+															<label for="complaintinput2">Telephone Number : <span class="danger">*</span></label>
+															<input type="text" id="complaintinput2" class="form-control "  name="telephoneNumber">
+														</div>
+													</div>
+															</div>
+															
+										
+														</div>
+													</div>
+												</div>
 
 												<!--end: Form Wizard Step 2-->
 
 												<!--begin: Form Wizard Step 3-->
-												
+												<div class="kt-wizard-v3__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+													<div class="kt-heading kt-heading--md">Please Fill in the Patient Form</div>
+													<div class="kt-form__section kt-form__section--first">
+														<div class="kt-wizard-v3__form">
+
+															<div class="row"> 
+															
+															<div class="col-md-6">   
+																<div class="form-group">
+																	<label for="complaintinput1">Treatment Plan : <span class="danger">*</span></label>
+																	<input type="text" id="complaintinput1" class="form-control " name="treatmentPlan" >
+																	
+																</div>
+															</div>
+		
+															<div class="col-md-6">   
+																<div class="form-group">
+																	<label for="complaintinput2">Medicine Problems : <span class="danger">*</span></label>
+																	<input type="text" id="complaintinput2" class="form-control "  name="medicineProblems">
+																</div>
+															</div>
+															
+															</div>
+
+
+															<div class="row"> 
+
+															<div class="col-md-6">   
+																<div class="form-group">
+																	<label for="complaintinput2">Blood Type : <span class="danger">*</span></label>
+																	<input type="text" id="complaintinput2" class="form-control "  name="bloodType">
+																</div>
+															</div>
+
+															</div>
+															
+															
+										
+														</div>
+													</div>
+												</div>
 
 												<!--end: Form Wizard Step 3-->
 
@@ -205,15 +302,15 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 												<!--begin: Form Actions -->
 												<div class="kt-form__actions">
 													<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
-														Geri
+														Backwards
 													</div>
 													
 													<div class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"   data-ktwizard-type="action-submit" onclick="myFunction()">
-														Kaydet
+														Submit
 													</div>
 													
 													<div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
-														İleri
+														Forwards
 													</div>
 												</div>
 
