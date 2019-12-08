@@ -7,19 +7,20 @@ if ($_POST){
 	
 	$patientName 				= $_POST['patientName'];
 	$patientSurname 			= $_POST['patientSurname'];
-	$dateofbirth 				= $_POST['dateofbirth'];
-	$bloodType 					= $_POST['bloodType'];
+	$dateofbirth 				= $_POST['dateOfBirth'];
+	$patientAge 				= $_POST['patientAge'];
 	$address 					= $_POST['address'];
 	$telephoneNumber 			= $_POST['telephoneNumber'];
 	$treatmentPlan 				= $_POST['treatmentPlan'];
+	$bloodType 					= $_POST['bloodType'];
 	$medicineProblems 			= $_POST['medicineProblems'];
 	$identityNumber 			= $_POST['identityNumber'];
 
 
 $regDate=date("Y/m/d");
 
-$queryss = $db->prepare("INSERT INTO patients(patientName,patientSurname,dateBirth,bloodType,patientAddress,telephoneNumber,patientTreatmentPlan,medicineProblems,identityNumber) values (?,?,?,?,?,?,?,?,?)");
-$insertss=$queryss->execute(array($patientName,$patientSurname,$dateofbirth,$bloodType,$address,$telephoneNumber,$treatmentPlan,$medicineProblems,$identityNumber));
+$queryss = $db->prepare("INSERT INTO patients(patientName,patientSurname,patientAge,dateOfBirth,bloodType,patientAddress,telephoneNumber,patientTreatmentPlan,medicineProblems,identityNumber) values (?,?,?,?,?,?,?,?,?,?)");
+$insertss=$queryss->execute(array($patientName,$patientSurname,$patientAge,$dateofbirth,$bloodType,$address,$telephoneNumber,$treatmentPlan,$medicineProblems,$identityNumber));
 
 
 
@@ -213,7 +214,15 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 													<div class="col-md-6">   
 														<div class="form-group">
 															<label for="complaintinput1">Date of Birth : <span class="danger">*</span></label>
-															<input type="text" id="complaintinput1" class="form-control " name="dateOfBirth" >
+															<input type="date" id="complaintinput1" class="form-control " name="dateOfBirth" >
+															
+														</div>
+													</div>
+
+													<div class="col-md-6">   
+														<div class="form-group">
+															<label for="complaintinput1">Age : <span class="danger">*</span></label>
+															<input type="number" id="complaintinput1" class="form-control " name="patientAge" >
 															
 														</div>
 													</div>
@@ -233,7 +242,7 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 													<div class="col-md-6">   
 														<div class="form-group">
 															<label for="complaintinput2">Telephone Number : <span class="danger">*</span></label>
-															<input type="text" id="complaintinput2" class="form-control "  name="telephoneNumber">
+															<input type="number" id="complaintinput2" class="form-control "  name="telephoneNumber">
 														</div>
 													</div>
 															</div>
@@ -275,8 +284,31 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 
 															<div class="col-md-6">   
 																<div class="form-group">
-																	<label for="complaintinput2">Blood Type : <span class="danger">*</span></label>
-																	<input type="text" id="complaintinput2" class="form-control "  name="bloodType">
+																	<label for="wlocation2"><span style="color: red">*</span>Blood Type : <span class="danger">*</span> </label>
+
+										                                   <select class="custom-select form-control required" name="bloodType" >
+
+																					<option value="">Please Select a Blood Type</option> 
+
+																					<option value="A+">A+</option> 
+
+																					<option value="A-">A-</option> 
+
+																					<option value="B+">B+</option> 
+
+																					<option value="B-">B-</option>
+
+																					<option value="0+">0+</option> 
+
+																					<option value="0-">0-</option>
+
+																					<option value="AB+">AB+</option> 
+
+																					<option value="AB-">AB-</option>
+
+																				
+
+																			</select>
 																</div>
 															</div>
 
