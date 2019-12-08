@@ -41,7 +41,7 @@ if($dtr = $dt->fetch())
 					<div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
 						<div class="kt-aside__brand-logo">
 							<a href="<? echo $url ?>/anasayfa">
-								<img alt="Logo" src="<? echo $url ?>/assets/media/logos/logo-light.png" />
+								<img alt="Logo" src="" />
 							</a>
 						</div>
 						<div class="kt-aside__brand-tools">
