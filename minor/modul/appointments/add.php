@@ -1,21 +1,13 @@
-
-
-<?php 
- include('../../bootstrap.php');
-$url=BASE_URL;
-if (empty($_SESSION['course_adminID'])){Header ("Location: ".$url."/minor/login.php");}?>
+<?php if (empty($_SESSION['adminID'])){Header ("Location: ".$url."/giris");}?>
 <?php
 
 if ($_POST){
 
-$season 		= $_POST["season"];
-$course_type  	= $_POST["course_type"];
-$courses		=$_POST["courses"];
-$timing			=$_POST["timing"];
-$classroom		=$_POST["classroom"];
-$class_count	=$_POST["class_count"];
-$courseID		=$_POST["courseID"];
-$class_name		= $_POST["class_name"];
+$appointmentDetails 		= $_POST["appointmentDetails"];
+$appointmentDate 		= $_POST["appointmentDate"];
+$patientID  	= $_POST["patientID"];
+$doctorID		=$_POST["doctorID"];
+
 
 
 
@@ -24,14 +16,14 @@ $class_name		= $_POST["class_name"];
 		
 		$regDate=date("Y/m/d H:m:s");
 					
-	$query = $db->prepare("INSERT INTO class(branchID, class_name, season, course_type, courses, timing, classroom, class_count, status, regDate, course_adminID ) 
-	values (?,?,?,?,?,?,?,?,?,?,?)");
+	$query = $db->prepare("INSERT INTO appointments(doctorNo,patientNo,dateAppointment,appointmentDetail) 
+	values (?,?,?,?)");
 	
-$insert=$query->execute(array($courseID,$class_name,$season,$course_type,$courses,$timing,$classroom,$class_count,1,$regDate,$_SESSION['course_adminID']));
+$insert=$query->execute(array($doctorID,$patientID,$appointmentDate,$appointmentDetails));
 		
 
 
-	Header ("Location: $url/class/list");
+	Header ("Location: $url/home");
 
 
 }
@@ -63,45 +55,61 @@ $insert=$query->execute(array($courseID,$class_name,$season,$course_type,$course
             });
         </script>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">        <!--end::Fonts -->
-    <link href="<?php echo $url; ?>/assets/css/demo1/pages/login/login-1.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+		<!--end::Fonts -->
 
+		<!--begin::Page Custom Styles(used by this page) -->
+		<link href="<? echo $url ?>/assets/app/custom/wizard/wizard-v2.default.css" rel="stylesheet" type="text/css" />
 
-    <link href="<?php echo $url; ?>/assets/vendors/general/tether/dist/css/tether.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/quill/dist/quill.snow.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/summernote/dist/summernote.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/dual-listbox/dist/dual-listbox.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/css/demo1/style.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/css/demo1/skins/header/base/light.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/css/demo1/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/css/demo1/skins/brand/dark.css" rel="stylesheet" type="text/css" />
-    <link href="<?php echo $url; ?>/assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />        <!--end::Layout Skins -->
-    <link rel="shortcut icon" href="<?php echo $url; ?>/assets/media/logos/favicon.ico" />
+		<!--end::Page Custom Styles -->
+
+		<!--begin:: Global Mandatory Vendors -->
+		<link href="<? echo $url ?>/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+
+		<!--end:: Global Mandatory Vendors -->
+
+		<!--begin:: Global Optional Vendors -->
+		<link href="<? echo $url ?>/assets/vendors/general/tether/dist/css/tether.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/summernote/dist/summernote.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/custom/vendors/fontawesome5/css/all.min.css" rel="stylesheet" type="text/css" />
+
+		<!--end:: Global Optional Vendors -->
+
+		<!--begin::Global Theme Styles(used by all pages) -->
+		<link href="<? echo $url ?>/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+
+		<!--end::Global Theme Styles -->
+
+		<!--begin::Layout Skins(used by all pages) -->
+		<link href="<? echo $url ?>/assets/demo/default/skins/header/base/light.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/demo/default/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/demo/default/skins/brand/dark.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/demo/default/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+
+		<!--end::Layout Skins -->
+		<link rel="shortcut icon" href="<? echo $url ?>/assets/media/logos/favicon.ico" />
+		
 		<style>
 	  .dn{ display:none;}
 	  </style>
@@ -132,15 +140,24 @@ $insert=$query->execute(array($courseID,$class_name,$season,$course_type,$course
 
 												<!--begin: Form Wizard Step 1-->
 												<div class="kt-wizard-v2__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-													<div class="kt-heading kt-heading--md">Sınıf Bilgilerini Giriniz</div>
+													<div class="kt-heading kt-heading--md">Please Fill the Appointment Form</div>
 													<div class="kt-form__section kt-form__section--first">
 														<div class="kt-wizard-v2__form">
   
   
 												<div class="form-group ">
-													<label for="projectinput7">Sınıf Adı</label>
+													<label for="projectinput7">Appointment Details</label>
 													
-													    <input class="form-control" name="class_name" placeholder="HSS.CT.A1-Beginner.1">
+													    <input class="form-control" name="appointmentDetails" placeholder="">
+				
+													</select>
+												</div>	
+
+
+												<div class="form-group ">
+													<label for="projectinput7">Date of the Appointment</label>
+													
+													    <input class="form-control" type="date" name="appointmentDate">
 				
 													</select>
 												</div>	
@@ -148,86 +165,40 @@ $insert=$query->execute(array($courseID,$class_name,$season,$course_type,$course
 												
 													
 													<div class="form-group " id="firstdivision">
-														<label for="projectinput7">Şube</label>
+														<label for="projectinput7">Patient</label>
 														
-					                                   <select class="form-control required" name="branchID" id="branchID" onChange="sezon(this);">
-															<?php $listS = $db->prepare("SELECT * FROM branch where courseID=?"); 
-																 $listS->execute(array($dt_courseID));
+					                                   <select class="form-control required" name="patientID">
+															<?php $listS = $db->prepare("SELECT * FROM patients"); 
+																 $listS->execute(array());
 															?>
-															<option value="0" selected>Şube Seçin 
+															<option value="0" selected>Please Select a Patient 
 															<?php foreach ($listS as $list) { ?>
-																<option value="<?php echo $list['branchID']; ?>"><?php echo $list['branch_name']; ?></option> 
+																<option value="<?php echo $list['patientID']; ?>"><?php echo $list['patientName']; ?> <?php echo $list['patientSurname']; ?></option> 
 																<?php } ?>
 														</select>
 													</div>
 												
 													
 												<div class="form-group " id="seconddivision">
-													<label for="projectinput7">Sezon</label>
-													
-													    <select class="form-control " name="season" id="sezonlar" onChange="kurs_type(this);"> 
-																<option value="0" selected>Lütfen önce şube seçin!</option>
-														</select>
-				
-													</select>
-												</div>
-												<div class="form-group" id="thirddivision">
-													<label for="projectinput7">Kurs Türü</label>
-													
-													    <select class="form-control " name="course_type" id="kurs_types" onChange="kurs(this);"> 
-																<option value="0" selected>Lütfen önce şube seçin!</option>
-														</select>
-				
-													</select>
-												</div>
-													
-												<div class="form-group" id="fourthdivision">
-													<label for="projectinput7">Kurs</label>
-													
-													    <select class="form-control " name="courses" id="kurslar" > 
-																<option value="0" selected>Lütfen önce şube seçin!</option>
-														</select>
-				
-													</select>
-												</div>
-												
-												<div class="form-group" id="fifthdivision">
-													<label for="projectinput7">Seans</label>
-													
-													    <select class="form-control " name="timing" id="seans"> 
-																<option value="0" selected>Lütfen önce şube seçin!</option>
-														</select>
-				
-													</select>
-												</div>
-												<div class="form-group" id="sixthdivision">
-													<label for="projectinput7">Derslik</label>
-													
-													    <select class="form-control " name="classroom" id="derslik"> 
-																<option value="0" selected>Lütfen önce şube seçin!</option>
-														</select>
-				
-													</select>
-												</div>
+													<label for="projectinput7">Doctor</label>
 														
-												<div class="form-group " id="seventhdivision">
-													<label for="projectinput7">Derslik Kontejyanı</label>
+					                                   <select class="form-control required" name="doctorID">
+															<?php $listS = $db->prepare("SELECT * FROM doctors"); 
+																 $listS->execute(array());
+															?>
+															<option value="0" selected>Please Select a Doctor 
+															<?php foreach ($listS as $list) { ?>
+																<option value="<?php echo $list['doctorID']; ?>"><?php echo $list['doctorName']; ?> <?php echo $list['doctorSurname']; ?></option> 
+																<?php } ?>
+														</select>
+												</div>
 													
-													    <input class="form-control" name="class_count">
-													    <input class="form-control" type="hidden" name="courseID" value="<? echo $dt_courseID ?>">
-				
-													</select>
-												</div>	
-															
-															
-															
-															
 														</div>
 													</div>
 												</div>
 
 													<button type="submit" class="btn btn-success" id="buttonsubmit">
-														<i class="la la-check-square-o"></i> Kaydet
+														<i class="la la-check-square-o"></i> Submit
 													</button>
 												
 											</form>
@@ -286,89 +257,86 @@ $insert=$query->execute(array($courseID,$class_name,$season,$course_type,$course
 
 		<!-- end::Global Config -->
 
+		<!--begin:: Global Mandatory Vendors -->
+	<!--begin:: Global Mandatory Vendors -->
+		<script src="<? echo $url ?>/assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/js-cookie/src/js.cookie.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/moment/min/moment.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/tooltip.js/dist/umd/tooltip.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/perfect-scrollbar/dist/perfect-scrollbar.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/sticky-js/dist/sticky.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/wnumb/wNumb.js" type="text/javascript"></script>
+
+		<!--end:: Global Mandatory Vendors -->
+
+		<!--begin:: Global Optional Vendors -->
+		<script src="<? echo $url ?>/assets/vendors/general/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/block-ui/jquery.blockUI.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/js/vendors/bootstrap-datepicker.init.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-datetime-picker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/js/vendors/bootstrap-timepicker.init.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-maxlength/src/bootstrap-maxlength.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/vendors/bootstrap-multiselectsplitter/bootstrap-multiselectsplitter.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-select/dist/js/bootstrap-select.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-switch/dist/js/bootstrap-switch.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/js/vendors/bootstrap-switch.init.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/select2/dist/js/select2.full.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/ion-rangeslider/js/ion.rangeSlider.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/typeahead.js/dist/typeahead.bundle.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/handlebars/dist/handlebars.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/inputmask/dist/jquery.inputmask.bundle.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/inputmask/dist/inputmask/inputmask.date.extensions.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/inputmask/dist/inputmask/inputmask.numeric.extensions.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/nouislider/distribute/nouislider.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/owl.carousel/dist/owl.carousel.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/autosize/dist/autosize.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/clipboard/dist/clipboard.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/dropzone/dist/dropzone.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/summernote/dist/summernote.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/markdown/lib/markdown.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-markdown/js/bootstrap-markdown.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/js/vendors/bootstrap-markdown.init.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/bootstrap-notify/bootstrap-notify.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/js/vendors/bootstrap-notify.init.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/jquery-validation/dist/additional-methods.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/js/vendors/jquery-validation.init.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/toastr/build/toastr.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/raphael/raphael.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/morris.js/morris.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/chart.js/dist/Chart.bundle.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/vendors/bootstrap-session-timeout/dist/bootstrap-session-timeout.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/vendors/jquery-idletimer/idle-timer.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/waypoints/lib/jquery.waypoints.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/counterup/jquery.counterup.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/es6-promise-polyfill/promise.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/sweetalert2/dist/sweetalert2.min.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/custom/js/vendors/sweetalert2.init.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/jquery.repeater/src/lib.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/jquery.repeater/src/jquery.input.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/jquery.repeater/src/repeater.js" type="text/javascript"></script>
+		<script src="<? echo $url ?>/assets/vendors/general/dompurify/dist/purify.js" type="text/javascript"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script src="<? echo $url ?>/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+		<!--end:: Global Optional Vendors -->
+
+		<!--begin::Global Theme Bundle(used by all pages) -->
+		<script src="<? echo $url ?>/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+
+		<!--end::Global Theme Bundle -->
 <script>
-	document.getElementById('firstdivision').style.display = "block";
-	document.getElementById('seconddivision').style.display = "none";
-	document.getElementById('thirddivision').style.display = "none";
-	document.getElementById('fourthdivision').style.display = "none";
-	document.getElementById('fifthdivision').style.display = "none";
-	document.getElementById('sixthdivision').style.display = "none";
-	document.getElementById('seventhdivision').style.display = "none";
-	document.getElementById('buttonsubmit').style.display = "none";
-	
-	function sezon(val) {
-		
-	var branchID = $( "#branchID" ).val();
-	$.ajax({
-		type: "POST",
-		url: "<? $url ?>/setting/sezon",
-		data:{'sube':branchID},
-		success: function(data){
-			$("#sezonlar").html(data);
-		}
-	});
-
-document.getElementById('seconddivision').style.display = "block";
-	
-}
-	function kurs_type(val) {
-		
-	var branchID = $( "#branchID" ).val();
-    var sezonlar = $( "#sezonlar" ).val();
-	$.ajax({
-	type: "POST",
-	url: "<? $url ?>/setting/kurs_type",
-	data:{'sezon':sezonlar,'sube':branchID},
-	success: function(data){
-		$("#kurs_types").html(data);
-	}
-	});
-
-	document.getElementById('thirddivision').style.display = "block";
-}
-	function kurs(val) {
-		
-	var branchID = $( "#branchID" ).val();
-    var sezonlar = $( "#sezonlar" ).val();
-	$.ajax({
-	type: "POST",
-	url: "<? $url ?>/setting/kurs",
-	data:{'sezon':sezonlar,'sube':branchID},
-	success: function(data){
-		$("#kurslar").html(data);
-	}
-	});
 	
 	
-	$.ajax({
-	type: "POST",
-	url: "<? $url ?>/setting/seans",
-	data:{'sezon':sezonlar,'sube':branchID},
-	success: function(data){
-		$("#seans").html(data);
-	}
-	});
-	
-	$.ajax({
-	type: "POST",
-	url: "<? $url ?>/setting/derslik",
-	data:{'sezon':sezonlar,'sube':branchID},
-	success: function(data){
-		$("#derslik").html(data);
-	}
-	});
 
 	
-	document.getElementById('fourthdivision').style.display = "block";
-	document.getElementById('fifthdivision').style.display = "block";
-	document.getElementById('sixthdivision').style.display = "block";
-	document.getElementById('seventhdivision').style.display = "block";
-	document.getElementById('buttonsubmit').style.display = "block";
-}
+
 
 
 </script>
