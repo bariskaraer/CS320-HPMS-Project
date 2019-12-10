@@ -132,121 +132,48 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="kt-portlet__body">
 
 									<!--begin: Datatable -->
-									<table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
-										<thead>
-											<tr>
-											<th>Ad</th>
-											<th>Soyad</th>
-											<th>Telefon</th>
-											<th>Şube</th>
-											<th>Görüşme Durumu</th>
-											<th>Görüşme Tipi</th>
-											<th>Randevu Tarihi</th>
-											<th>Kurs Türü</th>
-											<th>Kurs Seviye</th>
-											<th>İncele</th>
-											</tr>
-										</thead>
-										<tbody>
-											  <?
-			                   
+					<div class="kt-section">
+												<div class="kt-section__content">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th>complaintID</th>
+																<th>complaintPatientNo</th>
+																<th>header</th>
+																<th>message</th>
+																				
+															</tr>
+														</thead>
+														<tbody>
+															<?
+																
+																
+																$query = $db->prepare("SELECT * from complatints");
+																$query->execute(array());
+																if ( $query->rowCount() ){
+																foreach( $query as $rows ){
+																	
+																	$complaintID		= $rows['complaintID'];
+																	$complaintPatientNo		= $rows['complaintPatientNo'];
+																	$header= $rows['header'];
+																	$message	= $rows['message'];
+																?>
+															<tr >
+																<td><? echo $complaintID ?></td>
+																<td><? echo $complaintPatientNo ?> </td>
+																<td ><? echo $header ?></td>
+																<td ><? echo $message ?></td>
+																
+															</tr>
+															
+															
+														<?php };}else{echo '<td colspan="4">There are no complaints at the moment.</td>';}?>	
 														
-										
-										
-											
-										  $querysf = $db->prepare("SELECT * FROM interview, students where students.students_id=interview.students_id and interview.interview_status=?" );
-					                      $querysf->execute(array($r3));
-					                      if ( $querysf->rowCount() ){
-					                      foreach( $querysf as $rowsf ){
-				                      
-				                     
-										$interview_status	=$rowsf['interview_status'];
-										$interview_type	=$rowsf['newinterview_type'];
-										$edu_course=$rowsf['edu_course'];
-										$edu_level=$rowsf['edu_level'];
-										$appoDate	=$rowsf['appoDate'];
-										$students_id	=$rowsf['students_id'];
-										
-										
-				                     	$students_name 		=$rowsf["name"];
-										$students_surname 	=$rowsf["surname"];
-										$students_phone		=$rowsf['phone'];
-										
-										$students_id		=$rowsf['students_id'];
-										$course_adminID	=$rowsf['course_adminID'];
-										$branch_name	=$rowsf['branch_name'];
-										
-									
-										
-										
-										
-										
-										  $querys = $db->prepare("SELECT * FROM course_admin where course_adminID=? " );
-			                      $querys->execute(array($course_adminID));
-			                      if ( $querys->rowCount() ){
-			                      foreach( $querys as $rows ){
-				                      
-				                     	$names 		=$rows["name"];
-										$surnames 	=$rows["surname"];
-										
-										
-											}
-										}
-
-										
-										
-								
-										
-									?>
-											<tr>
-												<td >
-												<? echo $students_name ?>
-												</td>
-												<td >
-												<? echo $students_surname ?>
-												</td>
-												<td >
-												<? echo $students_phone ?>	
-												</td>
-												<td >
-												<? echo $branch_name ?>
-												</td>
-												<td >
-													
-												<? echo $interview_status ?>
-																											
-												</td>
-												<td >
-												<? echo $interview_type ?>
-												</td>
-												<td >
-												<? echo $appoDate ?>
-												</td>
-												
-												
-												<td >
-												<? echo $edu_course ?>
-												</td>
-												<td >
-												<? echo $edu_level ?>	
-												</td>
-																					
-												
-												<td >
-												<a href="<? echo $url ?>/interview/profile/<? echo $students_id; ?>" class="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10 ">İncele</a>	
-												</td>
-												
-												<td nowrap></td>
-												</tr>
-								
-                                        <?php };}else {echo '<tr><td colspan="11" class="null">Henüz Görüşme Bulunmamaktadır.</td></tr>';} ?>
-												
-											</tr>
-											
-										</tbody>
-									</table>
-
-									<!--end: Datatable -->
+														</tbody>
+													</table>
+												</div>
+											</div>
+		<!--end: Datatable -->
 								</div>
 							</div>
 							<? } if($r3=='Beklemede'){ ?>

@@ -151,50 +151,52 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 												<div class="kt-portlet__body">
 
-													<!--begin::Widget -->
-													<div class="kt-widget kt-widget--user-profile-2">
-														<div class="kt-widget__head">
-															
-															<div class="kt-widget__info">
-																<a href="#" class="kt-widget__username">
-																	Sınıf Adı : <? echo $class_name ?> 
-																</a>
-															</div>
-														</div>
-														<div class="kt-widget__body">
-															<div class="kt-widget__item">
-																<div class="kt-widget__contact">
-																	<span class="kt-widget__label">Sezon :</span>
-																	<a href="#" class="kt-widget__data"><? echo $season ?></a>
-																</div>
-																<div class="kt-widget__contact">
-																	<span class="kt-widget__label">Kurs Türü :</span>
-																	<a href="#" class="kt-widget__data"><? echo $course_type ?></a>
-																</div>
-																<div class="kt-widget__contact">
-																	<span class="kt-widget__label">Kurs	:</span>
-																	<a href="#" class="kt-widget__data"><? echo $courses ?></a>
-																</div>
-																<div class="kt-widget__contact">
-																	<span class="kt-widget__label">Seans :</span>
-																	<a href="#" class="kt-widget__data"><? echo $timing ?></a>
-																</div>
-																<div class="kt-widget__contact">
-																	<span class="kt-widget__label">Derslik :</span>
-																	<a href="#" class="kt-widget__data"><? echo $classroom ?></a>
-																</div>
-															</div>
-														</div>
-														<div class="kt-widget__footer">
-															<a href="<? echo $url ?>/class/detail/<? echo $classID ?>" class="btn btn-label-success btn-sm btn-upper">Detay</a>
-														</div>
-													</div>
+													<!--begin: Datatable -->
+					<div class="kt-section">
+												<div class="kt-section__content">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th>appointmentID</th>
+																<th>doctorNo</th>
+																<th>patientNo</th>
+																<th>dateAppointment</th>
+																<th>appointmentDetail</th>			
 
-													<!--end::Widget -->
+															</tr>
+														</thead>
+														<tbody>
+															<?
+																
+																
+																$query = $db->prepare("SELECT * from appointments");
+																$query->execute(array());
+																if ( $query->rowCount() ){
+																foreach( $query as $rows ){
+																	
+																	$appointmentID		= $rows['appointmentID'];
+																	$doctorNo		= $rows['doctorNo'];
+																	$patientNo= $rows['patientNo'];
+																	$dateAppointment	= $rows['dateAppointment'];
+																	$appointmentDetail		= $rows['appointmentDetail']
+																?>
+															<tr >
+																<td><? echo $appointmentID ?></td>
+																<td><? echo $doctorNo ?></td>
+																<td ><? echo $patientNo ?></td>
+																<td ><? echo $dateAppointment ?></td>
+																<td ><? echo $appointmentDetail ?></td>
+																
+															</tr>
+															
+															
+														<?php };}else{echo '<td colspan="5">There are no appointments at the moment.</td>';}?>	
+														
+														</tbody>
+													</table>
 												</div>
 											</div>
-
-											<!--End::Portlet-->
+		<!--end: Datatable -->
 										</div>
 										
                                         <?php };}else {echo '<tr><td colspan="9" class="null">Henüz Yönetici Bulunmamaktadır.</td></tr>';} ?>

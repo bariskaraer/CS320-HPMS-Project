@@ -121,34 +121,65 @@ License: You must have a valid license purchased only from themeforest(the above
 				</div>
 			</div>
 			<div class="kt-portlet__body">
-				<!--begin::Section-->
-				<div class="kt-section">
-					<span class="kt-section__info">
-						Add <code>.table-sm</code> to make tables more compact by cutting cell padding in half.
-					</span>
-					<div class="kt-section__content">
-						<table class="table table-sm table-head-bg-brand">
-						  	<thead class="thead-inverse">
-						    	<tr>
-						      		<th>#</th>
-						      		<th>Name</th>
-						      		<th>Surname</th>
-						      		<th>Date of birth</th>
-									<th>Address</th>
-									<th>Telephone Number</th>
-									<th>Patients</th>
-									<th>Appointments</th>
-									<th>Medicine Problem Replies</th>  
-									<th>Identity Number</th>
-						    	</tr>
-						  	</thead>
-						  	<tbody>
-						    
-						  	</tbody>
-						</table>
-					</div>
-				</div>
-				<!--end::Section-->
+				<!--begin: Datatable -->
+					<div class="kt-section">
+												<div class="kt-section__content">
+													<table class="table table-bordered">
+														<thead>
+															<tr>
+																<th>doctor ID</th>
+																<th>Doctor Name</th>
+																<th>Doctor Surname</th>
+																<th>username</th>
+																<th>Password</th>	
+																<th>Date of Birth</th>
+																<th>address</th>
+																<th>Telephone Number</th>
+																<th>patients</th>
+																<th>identityNumber</th>							
+															</tr>
+														</thead>
+														<tbody>
+															<?
+																
+																
+																$query = $db->prepare("SELECT * from doctors");
+																$query->execute(array());
+																if ( $query->rowCount() ){
+																foreach( $query as $rows ){
+																	
+																	$doctorID		= $rows['doctorID'];
+																	$doctorName		= $rows['doctorName'];
+																	$doctorSurname= $rows['doctorSurname'];
+																	$username	= $rows['username'];
+																	$passwordDoctor		= $rows['passwordDoctor'];
+																	$dateOfBirth		= $rows['dateOfBirth'];
+																	$address		= $rows['address'];
+																	$telephoneNumber		= $rows['telephoneNumber'];
+																	$patients		= $rows['patients'];
+																	$identityNumber		= $rows['identityNumber'];
+																
+																?>
+															<tr >
+																<td><? echo $doctorID ?></td>
+																<td><? echo $doctorName ?> <? echo $doctorSurname ?></td>
+																<td ><? echo $username ?></td>
+																<td ><? echo $passwordDoctor ?></td>
+																<td ><? echo $dateOfBirth ?></td>
+																<td ><? echo $address ?></td>
+																<td ><? echo $telephoneNumber ?></td>
+																<td ><? echo $patients ?></td>
+																<td ><? echo $identityNumber ?></td>
+															</tr>
+															
+															
+														<?php };}else{echo '<td colspan="9">There are no doctors at the moment.</td>';}?>	
+														
+														</tbody>
+													</table>
+												</div>
+											</div>
+		<!--end: Datatable -->
 			</div>
 		</div>	
 		<!--end::Portlet-->
