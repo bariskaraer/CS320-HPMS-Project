@@ -148,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															<?
 																
 																
-																$query = $db->prepare("SELECT * from complatints");
+																$query = $db->prepare("SELECT * from complaints");
 																$query->execute(array());
 																if ( $query->rowCount() ){
 																foreach( $query as $rows ){
