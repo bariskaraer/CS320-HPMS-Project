@@ -1,18 +1,7 @@
-<?php if (empty($_SESSION['course_adminID'])){Header ("Location: ".$url."/giris");}?>
+<?php if (empty($_SESSION['adminID'])){Header ("Location: ".$url."/login");}?>
 <!DOCTYPE html>
 
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4 & Angular 7
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
+
 <html lang="en">
 
 	<!-- begin::Head -->
@@ -37,6 +26,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!--begin:: Global Mandatory Vendors -->
 		<link href="<? echo $url ?>/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
 
 		<!--end:: Global Mandatory Vendors -->
 
@@ -93,55 +83,40 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- begin:: Page -->
 <!-- end:: Header -->
 					<? require 'minor/header.php'; ?>
-						<!-- end:: Content Head -->
+					
+					<div class="kt-portlet kt-portlet--mobile">
+	<div class="kt-portlet__head kt-portlet__head--lg">
+		<div class="kt-portlet__head-label">
+			<span class="kt-portlet__head-icon">
+				<i class="kt-font-brand flaticon2-line-chart"></i>
+			</span>
+			<h3 class="kt-portlet__head-title">
+				Patient List
+			</h3>
+		</div>
+		<div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-wrapper">
+	
+</div>		</div>
+	</div>
 
-						<!-- begin:: Content -->
-						<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
-							<div class="alert alert-light alert-elevate" role="alert">
-								<div class="alert-icon"><i class="flaticon-warning kt-font-brand"></i></div>
-								<div class="alert-text">
-									The foundation for DataTables is progressive enhancement, so it is very adept at reading table information directly from the DOM. This example shows how easy it is to add searching, ordering and paging to your HTML table by simply
-									running DataTables on it.
-									See official documentation <a class="kt-link kt-font-bold" href="https://datatables.net/examples/data_sources/dom.html" target="_blank">here</a>.
-								</div>
-							</div>
-							
-							<?  if($r3=='DevamEdiyor'){ ?>
-							<div class="kt-portlet kt-portlet--mobile">
-								<div class="kt-portlet__head kt-portlet__head--lg">
-									<div class="kt-portlet__head-label">
-										<span class="kt-portlet__head-icon">
-											<i class="kt-font-brand flaticon2-line-chart"></i>
-										</span>
-										<h3 class="kt-portlet__head-title">
-											Görüşmesi Devam Eden Aday Öğrenci Listesi
-										</h3>
-									</div>
-									<div class="kt-portlet__head-toolbar">
-										<div class="kt-portlet__head-wrapper">
-											<div class="kt-portlet__head-actions">
-												
-												<a href="<? echo $url ?>/interview/add" class="btn btn-brand btn-elevate btn-icon-sm">
-													<i class="la la-plus"></i>
-													Yeni Aday Ekle
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="kt-portlet__body">
-
-									<!--begin: Datatable -->
+	<div class="kt-portlet__body">
+		<!--begin: Datatable -->
 					<div class="kt-section">
 												<div class="kt-section__content">
 													<table class="table table-bordered">
 														<thead>
 															<tr>
-																<th>complaintID</th>
-																<th>complaintPatientNo</th>
-																<th>header</th>
-																<th>message</th>
-																				
+																<th>Complaint ID</th>
+																<th>Patient Name</th>
+																<th>Doctor Name</th>
+																<th>Subject</th>
+																<th>Complaint</th>
+																<th>Complaint Date</th>
+																<th>Delete</th>
+																<th>Edit</th>
+																
+																										
 															</tr>
 														</thead>
 														<tbody>
@@ -156,489 +131,60 @@ License: You must have a valid license purchased only from themeforest(the above
 																	$complaintID		= $rows['complaintID'];
 																	$complaintPatientNo		= $rows['complaintPatientNo'];
 																	$header= $rows['header'];
-																	$message	= $rows['message'];
+																	$messageComplaint	= $rows['messageComplaint'];
+																	$complaintDoctorNo		= $rows['complaintDoctorNo'];
+																	$dateComplaint		= $rows['dateComplaint'];
+
+
+
+
+
+
+																	$queryDoctor = $db->prepare("SELECT * from doctors where doctorID = ?");
+																	$queryDoctor->execute(array($complaintDoctorNo));
+																	if ( $queryDoctor->rowCount() ){
+																	foreach( $queryDoctor as $rowsDoctor ){
+																	
+																	$doctorName		= $rowsDoctor['doctorName'];
+																	$doctorSurname	= $rowsDoctor['doctorSurname'];
+																	
+
+																	}}
+
+
+																	$queryPatient = $db->prepare("SELECT * from patients where patientID = ?");
+																	$queryPatient->execute(array($complaintPatientNo));
+																	if ( $queryPatient->rowCount() ){
+																	foreach( $queryPatient as $rowsPatient ){
+																	
+																	$patientName		= $rowsPatient['patientName'];
+																	$patientSurname	= $rowsPatient['patientSurname'];
+																	
+
+																	}}
+																
 																?>
 															<tr >
 																<td><? echo $complaintID ?></td>
-																<td><? echo $complaintPatientNo ?> </td>
-																<td ><? echo $header ?></td>
-																<td ><? echo $message ?></td>
-																
+																<td><? echo $patientName ?> <? echo $patientSurname ?></td>
+																<td><? echo $doctorName ?> <? echo $doctorSurname ?></td>
+																<td><? echo $header ?></td>
+																<td><? echo $messageComplaint ?></td>
+																<td><? echo $dateComplaint ?></td>
+																<td></td>
+																<td></td>
 															</tr>
 															
 															
-														<?php };}else{echo '<td colspan="4">There are no complaints at the moment.</td>';}?>	
+														<?php };}else{echo '<td colspan="7">There are no complaints at the moment.</td>';}?>	
 														
 														</tbody>
 													</table>
 												</div>
 											</div>
 		<!--end: Datatable -->
-								</div>
-							</div>
-							<? } if($r3=='Beklemede'){ ?>
-							
-							<div class="kt-portlet kt-portlet--mobile">
-								<div class="kt-portlet__head kt-portlet__head--lg">
-									<div class="kt-portlet__head-label">
-										<span class="kt-portlet__head-icon">
-											<i class="kt-font-brand flaticon2-line-chart"></i>
-										</span>
-										<h3 class="kt-portlet__head-title">
-											Görüşmesi Devam Eden Aday Öğrenci Listesi
-										</h3>
-									</div>
-									<div class="kt-portlet__head-toolbar">
-										<div class="kt-portlet__head-wrapper">
-											<div class="kt-portlet__head-actions">
-												
-												<a href="<? echo $url ?>/interview/add" class="btn btn-brand btn-elevate btn-icon-sm">
-													<i class="la la-plus"></i>
-													Yeni Aday Ekle
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="kt-portlet__body">
-
-									<!--begin: Datatable -->
-									<table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
-										<thead>
-											<tr>
-											<th>Ad</th>
-											<th>Soyad</th>
-											<th>Telefon</th>
-											<th>Şube</th>
-											<th>Görüşme Durumu</th>
-											<th>Görüşme Tipi</th>
-											<th>Randevu Tarihi</th>
-											<th>Kurs Türü</th>
-											<th>Kurs Seviye</th>
-											<th>İncele</th>
-											</tr>
-										</thead>
-										<tbody>
-											  <?
-			                   
-								
-							
-						
-										
-										
-											
-										  $querysf = $db->prepare("SELECT * FROM interview where  interview_status='Beklemede' " );
-					                      $querysf->execute(array($students_id));
-					                      if ( $querysf->rowCount() ){
-					                      foreach( $querysf as $rowsf ){
-				                      
-				                     
-										$interview_status	=$rowsf['interview_status'];
-										$interview_type	=$rowsf['newinterview_type'];
-										$edu_course=$rowsf['edu_course'];
-										$edu_level=$rowsf['edu_level'];
-										$appoDate	=$rowsf['appoDate'];
-										$students_id	=$rowsf['students_id'];
-										
-										
-										
-												$query = $db->prepare("SELECT * FROM students order by students_id ASC " );
-			                      $query->execute(array($students_id));
-			                      if ( $query->rowCount() ){
-			                      foreach( $query as $row ){
-				                      
-				                     	$students_name 		=$row["name"];
-										$students_surname 	=$row["surname"];
-										$students_phone		=$row['phone'];
-										
-										$students_id		=$row['students_id'];
-										$course_adminID	=$row['course_adminID'];
-										$branch_name	=$row['branch_name'];
-										
-											}
-										}
-										
-										
-										
-										
-										  $querys = $db->prepare("SELECT * FROM course_admin where course_adminID=? " );
-			                      $querys->execute(array($course_adminID));
-			                      if ( $querys->rowCount() ){
-			                      foreach( $querys as $rows ){
-				                      
-				                     	$names 		=$rows["name"];
-										$surnames 	=$rows["surname"];
-										
-										
-											}
-										}
-
-										
-										
-								
-										
-									?>
-											<tr>
-												<td >
-												<? echo $students_name ?>
-												</td>
-												<td >
-												<? echo $students_surname ?>
-												</td>
-												<td >
-												<? echo $students_phone ?>	
-												</td>
-												<td >
-												<? echo $branch_name ?>
-												</td>
-												<td >
-													
-												<? echo $interview_status ?>
-																											
-												</td>
-												<td >
-												<? echo $interview_type ?>
-												</td>
-												<td >
-												<? echo $appoDate ?>
-												</td>
-												
-												
-												<td >
-												<? echo $edu_course ?>
-												</td>
-												<td >
-												<? echo $edu_level ?>	
-												</td>
-																					
-												
-												<td >
-												<a href="<? echo $url ?>/interview/profile/<? echo $students_id; ?>" class="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10 ">İncele</a>	
-												</td>
-												
-												</tr>
-								
-                                        <?php };}else {echo '<tr><td colspan="10" class="null">Henüz Görüşme Bulunmamaktadır.</td></tr>';} ?>
-												
-											</tr>
-											
-										</tbody>
-									</table>
-
-									<!--end: Datatable -->
-								</div>
-							</div>
-							<? } if($r3=='Olumsuz'){ ?>
-							<div class="kt-portlet kt-portlet--mobile">
-								<div class="kt-portlet__head kt-portlet__head--lg">
-									<div class="kt-portlet__head-label">
-										<span class="kt-portlet__head-icon">
-											<i class="kt-font-brand flaticon2-line-chart"></i>
-										</span>
-										<h3 class="kt-portlet__head-title">
-											Görüşmesi Devam Eden Aday Öğrenci Listesi
-										</h3>
-									</div>
-									<div class="kt-portlet__head-toolbar">
-										<div class="kt-portlet__head-wrapper">
-											<div class="kt-portlet__head-actions">
-												
-												<a href="<? echo $url ?>/interview/add" class="btn btn-brand btn-elevate btn-icon-sm">
-													<i class="la la-plus"></i>
-													Yeni Aday Ekle
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="kt-portlet__body">
-
-									<!--begin: Datatable -->
-									<table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
-										<thead>
-											<tr>
-											<th>Ad</th>
-											<th>Soyad</th>
-											<th>Telefon</th>
-											<th>Şube</th>
-											<th>Görüşme Durumu</th>
-											<th>Görüşme Tipi</th>
-											<th>Randevu Tarihi</th>
-											<th>Kurs Türü</th>
-											<th>Kurs Seviye</th>
-											<th>İncele</th>
-											</tr>
-										</thead>
-										<tbody>
-											  <?
-			                   
-								
-							
-						
-										
-										
-											
-										  $querysf = $db->prepare("SELECT * FROM interview where  interview_status='Olumsuz' " );
-					                      $querysf->execute(array($students_id));
-					                      if ( $querysf->rowCount() ){
-					                      foreach( $querysf as $rowsf ){
-				                      
-				                     
-										$interview_status	=$rowsf['interview_status'];
-										$interview_type	=$rowsf['newinterview_type'];
-										$edu_course=$rowsf['edu_course'];
-										$edu_level=$rowsf['edu_level'];
-										$appoDate	=$rowsf['appoDate'];
-										$students_id	=$rowsf['students_id'];
-										
-										
-										
-												$query = $db->prepare("SELECT * FROM students order by students_id ASC " );
-			                      $query->execute(array($students_id));
-			                      if ( $query->rowCount() ){
-			                      foreach( $query as $row ){
-				                      
-				                     	$students_name 		=$row["name"];
-										$students_surname 	=$row["surname"];
-										$students_phone		=$row['phone'];
-										
-										$students_id		=$row['students_id'];
-										$course_adminID	=$row['course_adminID'];
-										$branch_name	=$row['branch_name'];
-										
-											}
-										}
-										
-										
-										
-										
-										  $querys = $db->prepare("SELECT * FROM course_admin where course_adminID=? " );
-			                      $querys->execute(array($course_adminID));
-			                      if ( $querys->rowCount() ){
-			                      foreach( $querys as $rows ){
-				                      
-				                     	$names 		=$rows["name"];
-										$surnames 	=$rows["surname"];
-										
-										
-											}
-										}
-
-										
-										
-								
-										
-									?>
-											<tr>
-												<td >
-												<? echo $students_name ?>
-												</td>
-												<td >
-												<? echo $students_surname ?>
-												</td>
-												<td >
-												<? echo $students_phone ?>	
-												</td>
-												<td >
-												<? echo $branch_name ?>
-												</td>
-												<td >
-													
-												<? echo $interview_status ?>
-																											
-												</td>
-												<td >
-												<? echo $interview_type ?>
-												</td>
-												<td >
-												<? echo $appoDate ?>
-												</td>
-												
-												
-												<td >
-												<? echo $edu_course ?>
-												</td>
-												<td >
-												<? echo $edu_level ?>	
-												</td>
-																					
-												
-												<td >
-												<a href="<? echo $url ?>/interview/profile/<? echo $students_id; ?>" class="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10 ">İncele</a>	
-												</td>
-												
-												<td nowrap></td>
-												</tr>
-								
-                                        <?php };}else {echo '<tr><td colspan="11" class="null">Henüz Görüşme Bulunmamaktadır.</td></tr>';} ?>
-												
-											</tr>
-											
-										</tbody>
-									</table>
-
-									<!--end: Datatable -->
-								</div>
-							</div>
-							<? }  elseif($r3==''){?>
-							<div class="kt-portlet kt-portlet--mobile">
-								<div class="kt-portlet__head kt-portlet__head--lg">
-									<div class="kt-portlet__head-label">
-										<span class="kt-portlet__head-icon">
-											<i class="kt-font-brand flaticon2-line-chart"></i>
-										</span>
-										<h3 class="kt-portlet__head-title">
-											Görüşmesi Devam Eden Aday Öğrenci Listesi
-										</h3>
-									</div>
-									<div class="kt-portlet__head-toolbar">
-										<div class="kt-portlet__head-wrapper">
-											<div class="kt-portlet__head-actions">
-												
-												<a href="<? echo $url ?>/interview/add" class="btn btn-brand btn-elevate btn-icon-sm">
-													<i class="la la-plus"></i>
-													Yeni Aday Ekle
-												</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="kt-portlet__body">
-
-									<!--begin: Datatable -->
-									<table class="table table-striped- table-bordered table-hover table-checkable" id="kt_table_1">
-										<thead>
-											<tr>
-											<th>Ad</th>
-											<th>Soyad</th>
-											<th>Telefon</th>
-											<th>Şube</th>
-											<th>Görüşme Durumu</th>
-											<th>Görüşme Tipi</th>
-											<th>Randevu Tarihi</th>
-											<th>Kurs Türü</th>
-											<th>Kurs Seviye</th>
-											<th>İncele</th>
-											</tr>
-										</thead>
-										<tbody>
-											  <?
-			                   
-								
-							
-						
-										
-										
-											
-										  $querysf = $db->prepare("SELECT * FROM interview where  interview_status!='Kayıt' " );
-					                      $querysf->execute(array($students_id));
-					                      if ( $querysf->rowCount() ){
-					                      foreach( $querysf as $rowsf ){
-				                      
-				                     
-										$interview_status	=$rowsf['interview_status'];
-										$interview_type	=$rowsf['newinterview_type'];
-										$edu_course=$rowsf['edu_course'];
-										$edu_level=$rowsf['edu_level'];
-										$appoDate	=$rowsf['appoDate'];
-										$students_id	=$rowsf['students_id'];
-										
-										
-										
-												$query = $db->prepare("SELECT * FROM students order by students_id ASC " );
-			                      $query->execute(array($students_id));
-			                      if ( $query->rowCount() ){
-			                      foreach( $query as $row ){
-				                      
-				                     	$students_name 		=$row["name"];
-										$students_surname 	=$row["surname"];
-										$students_phone		=$row['phone'];
-										
-										$students_id		=$row['students_id'];
-										$course_adminID	=$row['course_adminID'];
-										$branch_name	=$row['branch_name'];
-										
-											}
-										}
-										
-										
-										
-										
-										  $querys = $db->prepare("SELECT * FROM course_admin where course_adminID=? " );
-			                      $querys->execute(array($course_adminID));
-			                      if ( $querys->rowCount() ){
-			                      foreach( $querys as $rows ){
-				                      
-				                     	$names 		=$rows["name"];
-										$surnames 	=$rows["surname"];
-										
-										
-											}
-										}
-
-										
-										
-								
-										
-									?>
-											<tr>
-												<td >
-												<? echo $students_name ?>
-												</td>
-												<td >
-												<? echo $students_surname ?>
-												</td>
-												<td >
-												<? echo $students_phone ?>	
-												</td>
-												<td >
-												<? echo $branch_name ?>
-												</td>
-												<td >
-													
-												<? echo $interview_status ?>
-																											
-												</td>
-												<td >
-												<? echo $interview_type ?>
-												</td>
-												<td >
-												<? echo $appoDate ?>
-												</td>
-												
-												
-												<td >
-												<? echo $edu_course ?>
-												</td>
-												<td >
-												<? echo $edu_level ?>	
-												</td>
-																					
-												
-												<td >
-												<a href="<? echo $url ?>/interview/profile/<? echo $students_id; ?>" class="btn btn-label-warning btn-bold btn-sm btn-icon-h kt-margin-l-10 ">İncele</a>	
-												</td>
-												
-												<td nowrap></td>
-												</tr>
-								
-                                        <?php };}else {echo '<tr><td colspan="11" class="null">Henüz Görüşme Bulunmamaktadır.</td></tr>';} ?>
-												
-											</tr>
-											
-										</tbody>
-									</table>
-
-									<!--end: Datatable -->
-								</div>
-							</div>
-							<? }  ?>
-						</div>
-
-						<!-- end:: Content -->
-					</div>
-
-					<!-- begin:: Footer -->
+	</div>
+</div>	
 					<? require 'minor/footer.php'; ?>
 					<!-- end:: Footer -->
 				</div>
@@ -760,6 +306,14 @@ License: You must have a valid license purchased only from themeforest(the above
 		<script src="<? echo $url ?>/assets/js/demo1/pages/crud/datatables/data-sources/html.js" type="text/javascript"></script>
 
 		<!--end::Global App Bundle -->
+
+
+		<!--begin::Page Vendors(used by this page) -->
+                                                  <!--end::Page Vendors -->
+         
+                    <!--begin::Page Scripts(used by this page) -->
+                          
+                        <!--end::Page Scripts -->
 	</body>
 
 	<!-- end::Body -->
