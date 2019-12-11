@@ -1,100 +1,32 @@
-<?php 
- include('../../bootstrap.php');
-$url=BASE_URL;
-if (empty($_SESSION['course_adminID'])){Header ("Location: ".$url."/minor/login.php");}?>
+<?php if (empty($_SESSION['adminID'])){Header ("Location: ".$url."/login");}?>
  <?
 	
-if ($_POST){
-	
-	
-	
-	$students_no 			= $_POST['student_number'];
-	$students_name 			= $_POST['student_name'];
-	$students_surname 		= $_POST['student_surname'];
-	$students_bDate			= $_POST['student_bDate'];
-	$students_phone 		= $_POST['student_phone'];
-	$students_email			= $_POST['student_email'];
-	$students_bPlace		= $_POST['student_bPlace'];
-	$gender					= $_POST['gender'];
-	$branchID					= $_POST['branchID'];
-	
-	$appoDate				=$_POST["appoDate"];
-	
-	$interview_type			=$_POST["interview_type"];
-	$edu_course				=$_POST["edu_course"];
-	$edu_type				=$_POST["edu_type"];
-	$edu_level				=$_POST["edu_level"];
-	$edu_season				=$_POST["edu_season"];
-	
-	$newinterview_type		=$_POST["newinterview_type"];
-	$interview_status		=$_POST["interview_status"];
-	$interview_reason		=$_POST["interview_reason"];
-	$interview_date			=$_POST["interview_date"];
-	
+	if ($_POST){
 
-	$custodian_name			= $_POST['custodian_name'];
-	$custodian_surname		= $_POST['custodian_surname'];
-	$custodian_phone		= $_POST['custodian_phone'];
-	$custodian_tckn			= $_POST['custodian_tckn'];
-	$custodian_mail			= $_POST['custodian_mail'];
-	$proximity				= $_POST['proximity'];
-
-	
-	$courseID 				= $_POST['courseID']; 
-	
-	
-	$query = $db->prepare("Select * from branch where branchID=?  ");
-	$query->execute(array($branchID));
-	if($row = $query->fetch())
-	{
-			$branch_name	=$row["branch_name"];
-	}
-
-
-
+		$complaintID 		= $_POST["complaintID"];
+		$complaintPatientNo 		= $_POST["complaintPatientNo"];
+		$header  	= $_POST["header"];
+		$message		=$_POST["message"];
 		
-
-$regDate=date("Y/m/d");
-$queryss = $db->prepare("INSERT INTO students( student_number, name, surname, email, bDate, bPlace, phone ,gender, course_adminID, courseID, branch_name) values (?,?,?,?,?,?,?,?,?,?,?)");
-$insertss=$queryss->execute(array($students_no, $students_name, $students_surname, $students_email, $students_bDate, $students_bPlace, $students_phone,$gender,$_SESSION['course_adminID'],$courseID,$branch_name));
-
-if($queryss){
 		
-	$query = $db->prepare("Select * from students where student_number=?  ");
-	$query->execute(array($students_no));
-	if($row = $query->fetch())
-	{
-			$students_id	=$row["students_id"];
-	}
-	
-		$query = $db->prepare("INSERT INTO interview(interview_status, interview_reason,  interview_type, edu_course, edu_type, edu_level, edu_season, newinterview_type, appoDate, students_id, course_adminID, interview_date) values (?,?,?,?,?,?,?,?,?,?,?,?)");
-		$insert=$query->execute(array($interview_status, $interview_reason,  $interview_type, $edu_course, $edu_type, $edu_level, $edu_season, $newinterview_type, $appoDate, $students_id, $_SESSION['course_adminID'],$interview_date));
 		
-
-		$query1 = $db->prepare("INSERT INTO custodians(custodian_name, custodian_surname, custodian_tckn, custodian_phone, custodian_mail,   students_id, course_adminID) values (?,?,?,?,?,?,?)");
-		$insert1=$query1->execute(array( $custodian_name, $custodian_surname, $custodian_tckn, $custodian_phone, $custodian_mail, $students_id, $_SESSION['course_adminID']));
-
-}
-
-
-$addDate=date("Y/m/d H:m:s");
-$queryss = $db->prepare("INSERT INTO students_log( students_id,student_number, name, surname, email, bDate, phone ,gender, course_adminID, courseID, addDate) values (?,?,?,?,?,?,?,?,?,?,?)");
-$insertss=$queryss->execute(array($students_id,$students_no, $students_name, $students_surname, $students_email, $students_bDate, $students_phone,$gender,$_SESSION['course_adminID'],$courseID,$addDate));
-
-if($queryss){
 		
-
-	
-		$query = $db->prepare("INSERT INTO interview_log(interview_status, interview_reason,  interview_type, edu_course, edu_type, edu_level, edu_season, newinterview_type, appoDate, students_id, course_adminID, interview_date,addDate) values (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-		$insert=$query->execute(array($interview_status, $interview_reason,  $interview_type, $edu_course, $edu_type, $edu_level, $edu_season, $newinterview_type, $appoDate, $students_id, $_SESSION['course_adminID'],$interview_date,$addDate));
 		
-
-		$query1 = $db->prepare("INSERT INTO custodians_log(custodian_name, custodian_surname, custodian_tckn, custodian_phone, custodian_mail,   students_id, course_adminID,addDate) values (?,?,?,?,?,?,?,?)");
-		$insert1=$query1->execute(array( $custodian_name, $custodian_surname, $custodian_tckn, $custodian_phone, $custodian_mail, $students_id, $_SESSION['course_adminID'],$addDate));
-
-}
-
-}
+				
+				
+				$regDate=date("Y/m/d H:m:s");
+							
+			$query = $db->prepare("INSERT INTO appointments(doctorNo,patientNo,dateAppointment,appointmentDetail) 
+			values (?,?,?,?)");
+			
+		$insert=$query->execute(array($doctorID,$patientID,$appointmentDate,$appointmentDetails));
+				
+		
+		
+			Header ("Location: $url/home");
+		
+		
+		}
 if (isset($error))
 {
 setcookie("error",$error,time()+2);
