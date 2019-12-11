@@ -26,7 +26,7 @@ if($ctr = $ct->fetch())
 */
 
 
-$url="http://localhost/HPMS";
+$url="http://localhost";
 $aUrl=$url."/major";
 $pUrl=$url."/minor";
 ?>

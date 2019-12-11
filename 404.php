@@ -23,9 +23,9 @@ if(empty($r1)){$in="index.php";}
 		
 	if($r1=='logout') { $in='minor/logout.php'; }
 	elseif($r1=='login') { $in='minor/login.php'; }
-	elseif($r1=='home')	{$in='minor/home.php';}
+	elseif($r1=='home')	{$in='minor/anasayfa.php';}
 
-	elseif($r1=='patients')  {$in='minor/modul/books/'.$r2.'.php';}
+	elseif($r1=='patients')  {$in='minor/modul/patients/'.$r2.'.php';}
 	elseif($r1=='complaints')  {$in='minor/modul/complaints/'.$r2.'.php';}
 	elseif($r1=='appointments')  {$in='minor/modul/appointments/'.$r2.'.php';}
 	elseif($r1=='admin')  {$in='minor/modul/admin/'.$r2.'.php';}
