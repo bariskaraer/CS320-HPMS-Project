@@ -1,4 +1,4 @@
-<?php  if (empty($_SESSION['adminID'])){Header ("Location: ".$url."/giris");}?>
+<?php  if (empty($_SESSION['adminID'])){Header ("Location: ".$url."/login");}?>
 <!DOCTYPE html>
 
 
@@ -98,29 +98,7 @@
 						<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
 
 							<!--Begin::Dashboard 1-->
-								<?
-                               $product = $db->query("SELECT * FROM interview where interview_status='Kayıt'");
-                               $kayit = $product->rowCount();
-                               
-                               $product = $db->query("SELECT * FROM interview where interview_status='DevamEdiyor'");
-                               $devam = $product->rowCount();
-                               
-                               $product = $db->query("SELECT * FROM interview where interview_status='Beklemede'");
-                               $bekleme = $product->rowCount();
-                               
-                               $product = $db->query("SELECT * FROM class where  branchID=".$dt_courseID);
-                               $class = $product->rowCount();
-                               
-                               
-                               $product = $db->query("SELECT * FROM branch where courseID=".$dt_courseID);
-                               $banch = $product->rowCount();
-                               
-                               
-                               
-                               $product = $db->query("SELECT * FROM seasons where branchID=".$dt_courseID);
-                               $season = $product->rowCount();
-                               
-                               ?>
+								
 
 							<div class="row row-full-height">
 										<div class="col-sm-12 col-md-12 col-lg-4">
@@ -128,8 +106,8 @@
 												<div class="kt-portlet__body kt-portlet__body--fluid">
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
-															<span class="kt-widget26__number"><? echo $kayit ?></span>
-															<span class="kt-widget26__desc">Doctor Information</span>
+															<span class="kt-widget26__number"></span>
+															<span class="kt-widget26__desc">Kayıtlı Öğrenci</span>
 														</div>
 														
 													</div>
@@ -139,8 +117,8 @@
 												<div class="kt-portlet__body kt-portlet__body--fluid">
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
-															<span class="kt-widget26__number"><? echo $class ?></span>
-															<span class="kt-widget26__desc">Patient Information</span>
+															<span class="kt-widget26__number"></span>
+															<span class="kt-widget26__desc">Sınıflar</span>
 														</div>
 													
 													</div>
@@ -152,8 +130,8 @@
 												<div class="kt-portlet__body kt-portlet__body--fluid">
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
-															<span class="kt-widget26__number"><? echo $banch ?></span>
-															<span class="kt-widget26__desc">Admin Information</span>
+															<span class="kt-widget26__number"></span>
+															<span class="kt-widget26__desc">Şube</span>
 														</div>
 														
 													</div>
@@ -164,21 +142,21 @@
 												<div class="kt-portlet__body kt-portlet__body--fluid">
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
-															<span class="kt-widget26__number"><? echo $season ?></span>
-															<span class="kt-widget26__desc">?</span>
+															<span class="kt-widget26__number"></span>
+															<span class="kt-widget26__desc">Sezonlar</span>
 														</div>
 														
 													</div>
 												</div>
 											</div>
 										</div>
-<div class="col-sm-12 col-md-12 col-lg-4">
+										<div class="col-sm-12 col-md-12 col-lg-4">
 											<div class="kt-portlet kt-portlet--height-fluid-half kt-portlet--border-bottom-success">
 												<div class="kt-portlet__body kt-portlet__body--fluid">
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
-															<span class="kt-widget26__number"><? echo $devam ?></span>
-															<span class="kt-widget26__desc">?2</span>
+															<span class="kt-widget26__number"></span>
+															<span class="kt-widget26__desc">Devam Eden Görüşmeler</span>
 														</div>
 														
 													</div>
@@ -189,573 +167,17 @@
 												<div class="kt-portlet__body kt-portlet__body--fluid">
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
-															<span class="kt-widget26__number"><? echo $bekleme ?></span>
-															<span class="kt-widget26__desc">?3</span>
+															<span class="kt-widget26__number"></span>
+															<span class="kt-widget26__desc">Beklemede Olan Görüşmeler</span>
 														</div>
 														
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-					
-							<!--Begin::Section-->
-							<div class="row">
-								
-								<div class="col-xl-4">
-
-									<!--begin:: Widgets/New Users-->
-									<div class="kt-portlet kt-portlet--tabs kt-portlet--height-fluid">
-										<div class="kt-portlet__head">
-											<div class="kt-portlet__head-label">
-												<h3 class="kt-portlet__head-title">
-													Add patient
-												</h3>
-											</div>
-											<div class="kt-portlet__head-toolbar">
-												<ul class="nav nav-tabs nav-tabs-line nav-tabs-bold nav-tabs-line-brand" role="tablist">
-													<li class="nav-item">
-														<a class="nav-link active" data-toggle="tab" href="#kt_widget4_tab1_content" role="tab">
-															Günlük
-														</a>
-													</li>
-												</ul>
-											</div>
-										</div>
-										
-									</div>
-
-									<!--end:: Widgets/New Users-->
-								</div>
-						
-									
-									<div class="col-xl-4">
-
-								<?
-                               $product = $db->query("SELECT * FROM students where gender='Kadın'");
-                               $kadin = $product->rowCount();
-                               
-                               
-                               $product = $db->query("SELECT * FROM students where gender='Erkek'");
-                               $erkek = $product->rowCount();
-                               
-                           
-                               
-                               $product = $db->query("SELECT * FROM students ");
-                               $toplam = $product->rowCount();
-                               
-                               ?>
-									<!--begin:: Widgets/Revenue Change-->
-									<div class="kt-portlet kt-portlet--height-fluid">
-												<div class="kt-widget14">
-													<div class="kt-widget14__header">
-														<h3 class="kt-widget14__title">
-															Cinsiyete Göre Dağılım
-														</h3>
-														<span class="kt-widget14__desc">
-															Kayıtlı öğrencilere göre düzenlenmiştir.
-														</span>
-													</div>
-													<div class="kt-widget14__content">
-														<div class="kt-widget14__chart"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-															<div class="kt-widget14__stat"><? echo $toplam ?></div>
-															<canvas id="kt_chart_profit_share" style="height: 140px; width: 140px; display: block;" width="140" height="140" class="chartjs-render-monitor"></canvas>
-														</div>
-														<div class="kt-widget14__legends">
-															<div class="kt-widget14__legend">
-																<span class="kt-widget14__bullet kt-bg-success"></span>
-																<span class="kt-widget14__stats"><? echo $kadin ?>% Kadın Öğrenci</span>
-															</div>
-															<div class="kt-widget14__legend">
-																<span class="kt-widget14__bullet kt-bg-warning"></span>
-																<span class="kt-widget14__stats"><? echo $erkek ?>% Erkek Öğrenci</span>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-									<!--end:: Widgets/Revenue Change-->
-									</div>
-								</div>
-							<!--Begin::Section-->
-							<div class="row">
-								<div class="col-xl-4">
-
-									<!--begin:: Widgets/Tasks -->
-									<div class="kt-portlet kt-portlet--fit kt-portlet--head-lg kt-portlet--head-overlay kt-portlet--height-fluid">
-										<div class="kt-portlet__head kt-portlet__space-x">
-											<div class="kt-portlet__head-label">
-												<h3 class="kt-portlet__head-title kt-font-light">
-													Toplam Kasa Turarı 
-												</h3>
-											</div>
-											<div class="kt-portlet__head-toolbar">
-												<a href="#" class="btn btn-outline-light btn-sm btn-bold dropdown-toggle" data-toggle="dropdown">
-													<?php
-											            setlocale(LC_ALL, 'tr_TR.UTF-8');
-											            echo strftime("%e %B ", time());
-											          ?>
-												</a>
-												<div class="dropdown-menu dropdown-menu-fit dropdown-menu-right">
-													<ul class="kt-nav">
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-line-chart"></i>
-																<span class="kt-nav__link-text">Raporlar</span>
-															</a>
-														</li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-send"></i>
-																<span class="kt-nav__link-text">Kasa Günlükleri</span>
-															</a>
-														</li>
-														<li class="kt-nav__item">
-															<a href="#" class="kt-nav__link">
-																<i class="kt-nav__link-icon flaticon2-settings"></i>
-																<span class="kt-nav__link-text">Ayarlar</span>
-															</a>
-														</li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<?
-                               $product = $db->query("SELECT * FROM cases where courseID=".$dt_courseID);
-                               $case = $product->rowCount();
-                               
-                               
-                               ?>
-										<div class="kt-portlet__body">
-											<div class="kt-widget27">
-												<div class="kt-widget27__visual">
-													<img src="<? echo  $url ?>/assets/media//bg/bg-4.jpg" alt="">
-													<h3 class="kt-widget27__title">
-														<span><span>₺</span><? echo $case ?></span>
-													</h3>
-													<div class="kt-widget27__btn">
-														<a href="#" class="btn btn-pill btn-light btn-elevate btn-bold">Tüm Kasaları Gör</a>
-													</div>
-												</div>
-												<div class="kt-widget27__container kt-portlet__space-x">
-													<ul class="nav nav-pills nav-fill" role="tablist">
-														<li class="nav-item">
-															<a class="nav-link active" data-toggle="pill" href="#kt_personal_income_quater_1">Havale</a>
-														</li>
-														<li class="nav-item">
-															<a class="nav-link" data-toggle="pill" href="#kt_personal_income_quater_2">Sanal Pos</a>
-														</li>
-														<li class="nav-item">
-															<a class="nav-link" data-toggle="pill" href="#kt_personal_income_quater_3">Kredi Kartı</a>
-														</li>
-														<li class="nav-item">
-															<a class="nav-link" data-toggle="pill" href="#kt_personal_income_quater_4">Çek</a>
-														</li>
-													</ul>
-													<div class="tab-content">
-														<div id="kt_personal_income_quater_1" class="tab-pane active">
-															<div class="kt-widget11">
-																<div class="table-responsive">
-
-																	<!--begin::Table-->
-																	<table class="table">
-
-																		<!--begin::Thead-->
-																		<thead>
-																			<tr>
-																				<td>Application</td>
-																				<td>Status</td>
-																				<td class="kt-align-right">Total</td>
-																			</tr>
-																		</thead>
-
-																		<!--end::Thead-->
-
-																		<!--begin::Tbody-->
-																		<tbody>
-																			<tr>
-																				<td>
-																					<a href="#" class="kt-widget11__title">Vertex 2.0</a>
-																					<span class="kt-widget11__sub">Vertex To By Again</span>
-																				</td>
-																				<td><span class="kt-badge kt-badge--success kt-badge--inline">pending</span></td>
-																				<td class="kt-align-right kt-font-brand kt-font-bold">$14,740</td>
-																			</tr>
-																			<tr>
-																				<td>
-																					<a href="#" class="kt-widget11__title">Metronic</a>
-																					<span class="kt-widget11__sub">Powerful Admin Theme</span>
-																				</td>
-																				<td><span class="kt-badge kt-badge--brand kt-badge--inline">new</span></td>
-																				<td class="kt-align-right kt-font-brand kt-font-bold">$16,010</td>
-																			</tr>
-																		</tbody>
-
-																		<!--end::Tbody-->
-																	</table>
-
-																	<!--end::Table-->
-																</div>
-															</div>
-														</div>
-														<div id="kt_personal_income_quater_2" class="tab-pane fade">
-															<div class="kt-widget11">
-																<div class="table-responsive">
-
-																	<!--begin::Table-->
-																	<table class="table">
-
-																		<!--begin::Thead-->
-																		<thead>
-																			<tr>
-																				<td>Application</td>
-																				<td>Status</td>
-																				<td class="kt-align-right">Total</td>
-																			</tr>
-																		</thead>
-
-																		<!--end::Thead-->
-
-																		<!--begin::Tbody-->
-																		<tbody>
-																			<tr>
-																				<td>
-																					<a href="#" class="kt-widget11__title">Vertex 2.0</a>
-																					<span class="kt-widget11__sub">Vertex To By Again</span>
-																				</td>
-																				<td><span class="kt-badge kt-badge--success kt-badge--inline">pending</span></td>
-																				<td class="kt-align-right kt-font-brand kt-font-bold">$14,740</td>
-																			</tr>
-																			<tr>
-																				<td>
-																					<a href="#" class="kt-widget11__title">Apex</a>
-																					<span class="kt-widget11__sub">The Best Selling App</span>
-																				</td>
-																				<td><span class="kt-badge kt-badge--warning kt-badge--inline">in process</span></td>
-																				<td class="kt-align-right kt-font-brand kt-font-bold">$37,200</td>
-																			</tr>
-																		</tbody>
-
-																		<!--end::Tbody-->
-																	</table>
-
-																	<!--end::Table-->
-																</div>
-															</div>
-														</div>
-														<div id="kt_personal_income_quater_3" class="tab-pane fade">
-															<div class="kt-widget11">
-																<div class="table-responsive">
-
-																	<!--begin::Table-->
-																	<table class="table">
-
-																		<!--begin::Thead-->
-																		<thead>
-																			<tr>
-																				<td>Application</td>
-																				<td>Status</td>
-																				<td class="kt-align-right">Total</td>
-																			</tr>
-																		</thead>
-
-																		<!--end::Thead-->
-
-																		<!--begin::Tbody-->
-																		<tbody>
-																			<tr>
-																				<td>
-																					<a href="#" class="kt-widget11__title">Metronic</a>
-																					<span class="kt-widget11__sub">Powerful Admin Theme</span>
-																				</td>
-																				<td><span class="kt-badge kt-badge--brand kt-badge--inline">new</span></td>
-																				<td class="kt-align-right kt-font-brand kt-font-bold">$16,010</td>
-																			</tr>
-																			<tr>
-																				<td>
-																					<a href="#" class="kt-widget11__title">Apex</a>
-																					<span class="kt-widget11__sub">The Best Selling App</span>
-																				</td>
-																				<td><span class="kt-badge kt-badge--warning kt-badge--inline">in process</span></td>
-																				<td class="kt-align-right kt-font-brand kt-font-bold">$37,200</td>
-																			</tr>
-																		</tbody>
-
-																		<!--end::Tbody-->
-																	</table>
-
-																	<!--end::Table-->
-																</div>
-															</div>
-														</div>
-														<div id="kt_personal_income_quater_4" class="tab-pane fade">
-															<div class="kt-widget11">
-																<div class="table-responsive">
-
-																	<!--begin::Table-->
-																	<table class="table">
-
-																		<!--begin::Thead-->
-																		<thead>
-																			<tr>
-																				<td>Application</td>
-																				<td>Status</td>
-																				<td class="kt-align-right">Total</td>
-																			</tr>
-																		</thead>
-
-																		<!--end::Thead-->
-
-																		<!--begin::Tbody-->
-																		<tbody>
-																			<tr>
-																				<td>
-																					<a href="#" class="kt-widget11__title">Vertex 2.0</a>
-																					<span class="kt-widget11__sub">Vertex To By Again</span>
-																				</td>
-																				<td><span class="kt-badge kt-badge--success kt-badge--inline">pending</span></td>
-																				<td class="kt-align-right kt-font-brand kt-font-bold">$14,740</td>
-																			</tr>
-																			<tr>
-																				<td>
-																					<a href="#" class="kt-widget11__title">Metronic</a>
-																					<span class="kt-widget11__sub">Powerful Admin Theme</span>
-																				</td>
-																				<td><span class="kt-badge kt-badge--brand kt-badge--inline">new</span></td>
-																				<td class="kt-align-right kt-font-brand kt-font-bold">$16,010</td>
-																			</tr>
-																		</tbody>
-
-																		<!--end::Tbody-->
-																	</table>
-
-																	<!--end::Table-->
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--end:: Widgets/Tasks -->
-								</div>
-								<div class="col-xl-4">
-
-									<!--begin:: Packages-->
-									<div class="kt-portlet kt-portlet--skin-solid kt-portlet--solid-warning kt-portlet--head-lg kt-portlet--head-overlay kt-portlet--height-fluid">
-										<div class="kt-portlet__head kt-portlet__head--noborder">
-											<div class="kt-portlet__head-label">
-												<h3 class="kt-portlet__head-title kt-font-light">
-													Bankalar
-												</h3>
-											</div>
-											<div class="kt-portlet__head-toolbar">
-												<a href="#" class="btn btn-outline-light btn-sm btn-hover-light btn-bold " >
-													<?php
-											            setlocale(LC_ALL, 'tr_TR.UTF-8');
-											            echo strftime("%B %Y", time());
-											          ?>
-												</a>
-												
-											</div>
-										</div>
-										<div class="kt-portlet__body kt-margin-t-0 kt-padding-t-0">
-											<div class="kt-widget29">
-
-			                   
-														
-										
-										
-											 <?
-										  $querysf = $db->prepare("SELECT * FROM cases where courseID =?" );
-					                      $querysf->execute(array($dt_courseID));
-					                      if ( $querysf->rowCount() ){
-					                      foreach( $querysf as $rowsf ){
-				                      
-				                     
-										  		$bank	=$rowsf['bank'];
-											?>
-											<!--begin::Widget 29-->
-											
-												<div class="kt-widget29__content">
-													<h3 class="kt-widget29__title"><? echo $bank ?></h3>
-													<div class="kt-widget29__item">
-														<div class="kt-widget29__info">
-															<span class="kt-widget29__subtitle">Total</span>
-															<span class="kt-widget29__stats kt-font-success">$680</span>
-														</div>
-														<div class="kt-widget29__info">
-															<span class="kt-widget29__subtitle">Change</span>
-															<span class="kt-widget29__stats kt-font-brand">+15%</span>
-														</div>
-														<div class="kt-widget29__info">
-															<span class="kt-widget29__subtitle">Licenses</span>
-															<span class="kt-widget29__stats kt-font-danger">29</span>
-														</div>
-													</div>
-												</div>
-												
-												
-                                        <?php };}else {echo '<tr><td colspan="11" class="null">Henüz Banka Bulunmamaktadır.</td></tr>';} ?>
-												
-												<? if($bank !='') {?>
-												<div class="kt-widget29__actions kt-align-right">
-													<a href="#" class="btn btn-brand">Tüm Detayları Gör</a>
-												</div>
-												<? } ?>
-											</div>
-
-											<!--end::Widget 29-->
-										</div>
-									</div>
-
-									<!--end:: Packages-->
-								</div>
-								<div class="col-xl-4">
-
-									<!--begin:: Widgets/Support Tickets -->
-									<div class="kt-portlet kt-portlet--height-fluid">
-										<div class="kt-portlet__head">
-											<div class="kt-portlet__head-label">
-												<h3 class="kt-portlet__head-title">
-													Kalite Sorunları
-												</h3>
-											</div>
-											<div class="kt-portlet__head-toolbar">
-												<div class="dropdown dropdown-inline">
-													<button type="button" class="btn btn-clean btn-sm btn-icon-md btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-														<i class="flaticon-more-1"></i>
-													</button>
-													<div class="dropdown-menu dropdown-menu-right">
-														<ul class="kt-nav">
-															<li class="kt-nav__item">
-																<a href="#" class="kt-nav__link">
-																	<i class="kt-nav__link-icon flaticon2-line-chart"></i>
-																	<span class="kt-nav__link-text">Reports</span>
-																</a>
-															</li>
-															<li class="kt-nav__item">
-																<a href="#" class="kt-nav__link">
-																	<i class="kt-nav__link-icon flaticon2-send"></i>
-																	<span class="kt-nav__link-text">Messages</span>
-																</a>
-															</li>
-															<li class="kt-nav__item">
-																<a href="#" class="kt-nav__link">
-																	<i class="kt-nav__link-icon flaticon2-pie-chart-1"></i>
-																	<span class="kt-nav__link-text">Charts</span>
-																</a>
-															</li>
-															<li class="kt-nav__item">
-																<a href="#" class="kt-nav__link">
-																	<i class="kt-nav__link-icon flaticon2-avatar"></i>
-																	<span class="kt-nav__link-text">Members</span>
-																</a>
-															</li>
-															<li class="kt-nav__item">
-																<a href="#" class="kt-nav__link">
-																	<i class="kt-nav__link-icon flaticon2-settings"></i>
-																	<span class="kt-nav__link-text">Settings</span>
-																</a>
-															</li>
-														</ul>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="kt-portlet__body">
-											<div class="kt-widget3">
-												<div class="kt-widget3__item">
-													<div class="kt-widget3__header">
-														<div class="kt-widget3__user-img">
-															<img class="kt-widget3__img" src="<? echo $url ?>/assets/media/users/user1.jpg" alt="">
-														</div>
-														<div class="kt-widget3__info">
-															<a href="#" class="kt-widget3__username">
-																Melania Trump
-															</a><br>
-															<span class="kt-widget3__time">
-																2 day ago
-															</span>
-														</div>
-														<span class="kt-widget3__status kt-font-info">
-															Pending
-														</span>
-													</div>
-													<div class="kt-widget3__body">
-														<p class="kt-widget3__text">
-															Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-														</p>
-													</div>
-												</div>
-												<div class="kt-widget3__item">
-													<div class="kt-widget3__header">
-														<div class="kt-widget3__user-img">
-															<img class="kt-widget3__img" src="<? echo $url ?>/assets/media/users/user4.jpg" alt="">
-														</div>
-														<div class="kt-widget3__info">
-															<a href="#" class="kt-widget3__username">
-																Lebron King James
-															</a><br>
-															<span class="kt-widget3__time">
-																1 day ago
-															</span>
-														</div>
-														<span class="kt-widget3__status kt-font-brand">
-															Open
-														</span>
-													</div>
-													<div class="kt-widget3__body">
-														<p class="kt-widget3__text">
-															Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-														</p>
-													</div>
-												</div>
-												<div class="kt-widget3__item">
-													<div class="kt-widget3__header">
-														<div class="kt-widget3__user-img">
-															<img class="kt-widget3__img" src="<? echo $url ?>/assets/media/users/user5.jpg" alt="">
-														</div>
-														<div class="kt-widget3__info">
-															<a href="#" class="kt-widget3__username">
-																Deb Gibson
-															</a><br>
-															<span class="kt-widget3__time">
-																3 weeks ago
-															</span>
-														</div>
-														<span class="kt-widget3__status kt-font-success">
-															Closed
-														</span>
-													</div>
-													<div class="kt-widget3__body">
-														<p class="kt-widget3__text">
-															Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-														</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<!--end:: Widgets/Support Tickets -->
-								</div>
-								
 							</div>
-							
-							<!--End::Section-->
-
-						
-
-							<!--End::Section-->
-
-							<!--End::Dashboard 1-->
-						</div>
-
-						<!-- end:: Content -->
-					</div>
 					
+						
 					
                  				
 
@@ -763,8 +185,7 @@
 					<? require 'minor/footer.php'; ?>
 					<!-- end:: Footer -->
 				</div>
-			</div>
-		</div>
+			
 
 		<!-- end:: Page -->
 
