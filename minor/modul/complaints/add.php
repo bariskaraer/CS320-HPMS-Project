@@ -7,19 +7,12 @@
 		$complaintPatientNo 		= $_POST["complaintPatientNo"];
 		$header  	= $_POST["header"];
 		$message		=$_POST["message"];
-		
-		
-		
-		
-		
-				
-				
-				$regDate=date("Y/m/d H:m:s");
+		$regDate=date("Y/m/d H:m:s");
 							
-			$query = $db->prepare("INSERT INTO appointments(doctorNo,patientNo,dateAppointment,appointmentDetail) 
+			$query = $db->prepare("INSERT INTO complaints(complaintID,complaintPatientNo,header,message) 
 			values (?,?,?,?)");
 			
-		$insert=$query->execute(array($doctorID,$patientID,$appointmentDate,$appointmentDetails));
+		$insert=$query->execute(array($complaintID,$complaintPatientNo,$header,$message));
 				
 		
 		
@@ -124,7 +117,7 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 													<a class="kt-wizard-v3__nav-item" href="#" data-ktwizard-type="step" data-ktwizard-state="current">
 														<div class="kt-wizard-v3__nav-body">
 															<div class="kt-wizard-v3__nav-label">
-																<span>1</span> Aday Bilgileri
+																<span>1</span> Hasta Bilgileri
 															</div>
 															<div class="kt-wizard-v3__nav-bar"></div>
 														</div>
@@ -132,7 +125,7 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 													<a class="kt-wizard-v3__nav-item" href="#" data-ktwizard-type="step">
 														<div class="kt-wizard-v3__nav-body">
 															<div class="kt-wizard-v3__nav-label">
-																<span>2</span> Aday Veli Bilgileri
+																<span>2</span> Doktor Bilgileri
 															</div>
 															<div class="kt-wizard-v3__nav-bar"></div>
 														</div>
@@ -159,39 +152,36 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 
 												<!--begin: Form Wizard Step 1-->
 												<div class="kt-wizard-v3__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
-													<div class="kt-heading kt-heading--md">Öğrenci Bilgilerini Giriniz</div>
+													<div class="kt-heading kt-heading--md">Hasta Şikayetini Giriniz</div>
 													<div class="kt-form__section kt-form__section--first">
 														<div class="kt-wizard-v3__form">
 															<div class="row"> 
 	                                        <div class="col-md-6">   
 	                                        	<div class="form-group">
-													<label for="complaintinput1">Öğrenci Adı : <span class="danger">*</span></label>
+													<label for="complaintinput1">Hasta Numarası : <span class="danger">*</span></label>
 													<input type="text" id="complaintinput1" class="form-control " name="student_name" >
 													<input type="hidden" class="form-control " name="student_number" value="<? echo rand(0, 100000) ?>">
 														<input type="hidden"  class="form-control " name="courseID" value="<? echo $dt_courseID ?>">
 												</div>
 											</div>
+										
+										</div>
+										<div class="row">
 	                                        <div class="col-md-6">   
 		                                        <div class="form-group">
-													<label for="complaintinput2">Öğrenci Soyadı : <span class="danger">*</span></label>
+													<label for="complaintinput2">Şikayet Konusu: <span class="danger">*</span></label>
 													<input type="text" id="complaintinput2" class="form-control "  name="student_surname">
 												</div>
 											</div>
-										</div>
+											</div>
 										<div class="row"> 
 	                                        <div class="col-md-6">   
 												<div class="form-group">
-													<label for="complaintinput2">Öğrenci Telefon Numarası : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput2" class="form-control " placeholder="05XXXXXXXX" name="student_phone" >
+													<label for="message">Şikayet Detayları <span class="danger">*</span></label>
+													<textarea class="form-control" id="message" name="message" rows="3"></textarea>
 												</div>
 											</div>
 	                                       
-											<div class="col-md-6">   
-												<div class="form-group">
-													<label for="complaintinput4">E-posta : </label>
-													<input type="text" id="complaintinput4" class="form-control " name="student_email" 	>
-												</div>
-											</div>
 										</div>
 										<div class="row"> 
 	                                        <div class="col-md-6">   
@@ -200,366 +190,15 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 													<input type="text" id="complaintinput4" class="form-control " placeholder="<? echo $dt_name ?> <? echo $dt_surname ?>"	disabled>
 												</div>
 											</div>
-	                                        <div class="col-md-6">   
-											<div class="form-group">
-												<label for="complaintinput5">Cinsiyet : <span class="danger">*</span></label>
-													<select id="projectinput6"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Cinsiyet" data-original-title="" title="" name="gender">
-														<option value="">Lütfen Seçim Yapınız</option>
-														<option value="Kadın">Kadın</option>
-														<option value="Erkek">Erkek</option>
-													</select>
-											</div>
-											</div>
 										</div>
 										
-										<div class="row"> 
-											 <div class="col-md-6">   
-												<div class="form-group">
-													<label for="complaintinput3">Doğum Yeri : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput1" class="form-control " name="student_bPlace" >
-												</div>
-											</div>
-											 <div class="col-md-6">   
-												<div class="form-group">
-													<label for="complaintinput3">Doğum Tarihi :</label>
-													<input type="date" id="complaintinput3" class="form-control " name="student_bDate" >
-												</div>
-											</div>
-                                        
-										</div>
-														</div>
+							</div>
 													</div>
 												</div>
 
 												<!--end: Form Wizard Step 1-->
 
-												<!--begin: Form Wizard Step 2-->
-												<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
-													<div class="kt-heading kt-heading--md">Veli Bilgilerini Giriniz.</div>
-													<div class="kt-form__section kt-form__section--first">
-														<div class="kt-wizard-v3__form">
-														
-														                 
-                                        <div class="row"> 
-	                                        <div class="col-md-6">   
-	                                        	<div class="form-group">
-													<label for="complaintinput1">Veli Adı : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput1" class="form-control " name="custodian_name" >
-												</div>
-											</div>
-	                                        <div class="col-md-6">   
-		                                        <div class="form-group">
-													<label for="complaintinput2">Veli Soyadı : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput2" class="form-control "  name="custodian_surname" >
-												</div>
-											</div>
-										</div>
-										          
-                                        <div class="row"> 
-	                                        <div class="col-md-6">   
-	                                        	<div class="form-group">
-													<label for="complaintinput1">Veli TCKN : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput1" class="form-control " name="custodian_tckn" >
-												</div>
-											</div>
-	                                        <div class="col-md-6">   
-							                                        <div class="form-group">
-																	<label for="projectinput7">Yakınlık Derecesi</label>
-																		<select id="projectinput7"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Şube" data-original-title="" title="" name="proximity" >
-																			<option value="">Lütfen Seçim Yapınız</option>
-																			<?
-														                                  $query = $db->prepare("SELECT * FROM family_ship where courseID =?");
-																	                      $query->execute(array($dt_courseID));
-																	                      if ( $query->rowCount() ){
-																	                      foreach( $query as $row ){
-																	
-																							
-																						   
-																						  $title=  $row['title'];
-									                           
-															                            ?>
-															                            
-															                            
-																					<option  value="<? echo  $title ?>"><? echo $title ?></option>
-																		
-																		
-																					
-																					<? } } ?>
-									
-																		</select>
-																	</div>
-																</div>
-
-										</div>
-										
-								
-                                        <div class="row"> 
-	                                        <div class="col-md-6">   
-	                                        	<div class="form-group">
-													<label for="complaintinput1">Veli Telefon No : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput2" class="form-control " placeholder="05XXXXXXXX" name="custodian_phone">
-												</div>
-											</div>
-	                                        <div class="col-md-6">   
-		                                        <div class="form-group">
-													<label for="complaintinput2">Sms Numarası : <span class="danger">*</span></label>
-													<input type="text" id="complaintinput2" class="form-control " placeholder="05XXXXXXXX" name="custodian_sms">
-												</div>
-											</div>
-										</div>
-										
-														
-														</div>	
-													</div>
-												</div>
-
-												<!--end: Form Wizard Step 2-->
-
-												<!--begin: Form Wizard Step 3-->
-												<div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
-													<div class="kt-heading kt-heading--md">Görüşme Bilgilerini Giriniz.</div>
-													<div class="kt-form__section kt-form__section--first">
-														<div class="kt-wizard-v3__form">
-															<div class="row">
-																<div class="col-md-6">
-																	<div class="form-group ">
-																		<label for="projectinput7">Şube</label>
-																		
-									                                   <select class="form-control required" name="branchID" id="branchID" onChange="sezon(this);">
-																			<?php $listS = $db->prepare("SELECT * FROM branch where courseID=?"); 
-																				 $listS->execute(array($dt_courseID));
-																			?>
-																			<option value="0" selected>Şube Seçin 
-																			<?php foreach ($listS as $list) { ?>
-																				<option value="<?php echo $list['branchID']; ?>"><?php echo $list['branch_name']; ?></option> 
-																				<?php } ?>
-																		</select>
-																	</div>
-																</div>
-						                                       	<div class="col-md-6">
-																	<div class="form-group ">
-																		<label for="projectinput7">Sezon</label>
-																		
-																		    <select class="form-control " name="edu_season" id="sezonlar" onChange="kurs_type(this);"> 
-																					<option value="0" selected>Lütfen önce şube seçin!</option>
-																			</select>
-									
-																		</select>
-																	</div>
-																</div>
-											
-															</div>		
-															<div class="row">
-						                                        <div class="col-md-6">
-																		<div class="form-group ">
-																		<label for="projectinput7">Kurs Türü</label>
-																		
-																		    <select class="form-control " name="edu_type" id="kurs_types" onChange="kurs(this);"> 
-																					<option value="0" selected>Lütfen önce sezon seçin!</option>
-																			</select>
-									
-																		</select>
-																	</div>
-															</div>
-						                                       	<div class="col-md-6">
-																	<div class="form-group ">
-																		<label for="projectinput7">Kurs</label>
-																		
-																		    <select class="form-control " name="edu_course" id="kurslar" > 
-																					<option value="0" selected>Lütfen kurs türü şube seçin!</option>
-																			</select>
-									
-																		</select>
-																	</div>
-					
-																</div>
-											
-															</div>		
-															<div class="row">
-																<div class="col-md-6">	
-																	<div class="form-group ">
-																		<label for="projectinput7">Seviye</label>
-																		
-																		    <select class="form-control " name="edu_level" id="level" > 
-																					<option value="0" selected>Lütfen önce kurs seçin!</option>
-																			</select>
-									
-																		</select>
-																	</div>
-																</div>
-																
-															</div>		
-										<div class="row">	
-											
-											<div class="col-md-6">		
-												<div class="form-group ">
-													<label for="projectinput7">Görüşme Tipi</label>
-													<select id="projectinput7"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Görüşme Tipi" data-original-title="" title="" name="interview_type" >
-														<option value="">Lütfen Seçim Yapınız</option>
-														<?
-									                                  $query = $db->prepare("SELECT * FROM interviewHow where courseID=? order by title ASC");
-												                      $query->execute(array($dt_courseID));
-												                      if ( $query->rowCount() ){
-												                      foreach( $query as $row ){
 												
-																		
-																	   
-																	  $title = $row['title'];
-				                           
-																
-										                            ?>
-										                            
-										                            
-																<option  value="<? echo  $title ?>"><? echo $title ?></option>
-													
-													
-																
-																<? } } ?>
-				
-													</select>
-												</div>
-											</div>	
-											<div class="col-md-6">   
-		                                        <div class="form-group">
-													<label for="complaintinput2">Görüşme Tarihi: </label>
-													<input type="text" name="interview_date" class="form-control "   value="<? echo date("Y/m/d h:m:s") ?>" disabled>
-												</div>
-											</div>
-										</div>		
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group ">
-													<label for="projectinput6">Görüşme Durumu</label>
-													<select id="interview_status"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Görüşme Durumu" data-original-title="" title="" name="interview_status"  onchange="secim(this)">
-														<option value="">Lütfen Seçim Yapınız</option>
-														<option value="DevamEdiyor">Devam Ediyor</option>
-														<option value="Olumsuz">Olumsuz</option>
-														<option value="Beklemede">Beklemede</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											
-											<div class="col-md-6">
-												<div class="form-group olumsuz dn">
-													<label for="projectinput7">Neden Olumsuz ?</label>
-													<select  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Durum Sebebi" data-original-title="" title="" name="interview_reason">
-													<option value="">Lütfen Seçim Yapınız</option>
-													<?
-													$query = $db->prepare("SELECT * FROM dynamic_sub where dynamicID=? order by subTitle ASC");
-													$query->execute(array(3));
-													if ( $query->rowCount() ){
-													foreach( $query as $row ){
-													
-													
-													
-													$subTitle = $row['subTitle'];
-													
-													
-													?>
-													
-													
-													<option  value="<? echo  $subTitle ?>"><? echo $subTitle ?></option>
-													
-													
-													
-													<? } } ?>
-													
-													</select>
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group reason dn">
-													<label for="projectinput7">Bekleme Sebebi</label>
-													<select  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Durum Sebebi" data-original-title="" title="" name="interview_reason" >
-													<option value="">Lütfen Seçim Yapınız</option>
-													<?
-													$query = $db->prepare("SELECT * FROM dynamic_sub where dynamicID=? order by subTitle ASC");
-													$query->execute(array(2));
-													if ( $query->rowCount() ){
-													foreach( $query as $row ){
-													
-													
-													
-													$subTitle = $row['subTitle'];
-													
-													
-													?>
-													
-													
-													<option  value="<? echo  $subTitle ?>"><? echo $subTitle ?></option>
-													
-													
-													
-													<? } } ?>
-													
-													</select>
-												</div>
-											</div>
-											
-											
-											<div class="col-md-6">
-												<div class="form-group appo dn">
-													<label for="complaintinput8">Randevu Tarihi</label>
-													
-													<input type="date" id="complaintinput3" class="form-control " name="appoDate" >
-												</div>
-											</div>
-											
-											<div class="col-md-6">
-												<div class="form-group appo dn">
-													<label for="projectinput7">Bir Sonra ki Görüşme Tipi</label>
-													<select id="projectinput7"  class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top" data-title="Görüşme Tipi" data-original-title="" title="" name="newinterview_type" >
-													<option value="">Lütfen Seçim Yapınız</option>
-																	<?
-									                                  $query = $db->prepare("SELECT * FROM interviewHow where courseID=? order by title ASC");
-												                      $query->execute(array($dt_courseID));
-												                      if ( $query->rowCount() ){
-												                      foreach( $query as $row ){
-												
-																		
-																	   
-																	  $title = $row['title'];
-				                           
-																
-										                            ?>
-										                            
-										                            
-																<option  value="<? echo  $title ?>"><? echo $title ?></option>
-													
-													
-																
-																<? } } ?>
-
-													</select>
-													
-												
-												
-												</div>											
-											</div>
-											<div class="col-md-12">
-												<div class="form-group  appo dn">
-													<label for="complaintinput5">Görüşme Detayı</label>
-													<textarea id="complaintinput5" rows="5" class="form-control" name="interview_desc" placeholder="Açıklama Metni"></textarea>
-												</div>
-											</div>
-                                        </div>
-														</div>
-													</div>
-												</div>
-
-												<!--end: Form Wizard Step 3-->
-
-												<!--begin: Form Wizard Step 4-->
-												
-
-												<!--end: Form Wizard Step 4-->
-
-												<!--begin: Form Wizard Step 5-->
-												
-												<!--end: Form Wizard Step 5-->
-
 												<!--begin: Form Actions -->
 												<div class="kt-form__actions">
 													<div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
