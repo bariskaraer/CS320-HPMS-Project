@@ -18,7 +18,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- begin::Head -->
 	<head>
 		<meta charset="utf-8" />
-		<title><? echo $wpName ?></title>
+		<title>Metronic | Row Details</title>
 		<meta name="description" content="Row details examples">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -37,6 +37,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!--begin:: Global Mandatory Vendors -->
 		<link href="<? echo $url ?>/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css"/>
 
 		<!--end:: Global Mandatory Vendors -->
 
@@ -65,20 +66,20 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="<? echo $url ?>/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
 		<link href="<? echo $url ?>/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
 		<link href="<? echo $url ?>/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $url ?>/assets/vendors/general/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/vendors/custom/vendors/fontawesome5/css/all.min.css" rel="stylesheet" type="text/css" />
 
 		<!--end:: Global Optional Vendors -->
 
 		<!--begin::Global Theme Styles(used by all pages) -->
-		<link href="<? echo $url ?>/assets/css/demo1/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 
 		<!--end::Global Theme Styles -->
 
 		<!--begin::Layout Skins(used by all pages) -->
-		<link href="<? echo $url ?>/assets/css/demo1/skins/header/base/light.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $url ?>/assets/css/demo1/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $url ?>/assets/css/demo1/skins/brand/dark.css" rel="stylesheet" type="text/css" />
-		<link href="<? echo $url ?>/assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/demo/default/skins/header/base/light.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/demo/default/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/demo/default/skins/brand/dark.css" rel="stylesheet" type="text/css" />
+		<link href="<? echo $url ?>/assets/demo/default/skins/aside/dark.css" rel="stylesheet" type="text/css" />
 
 		<!--end::Layout Skins -->
 		<link rel="shortcut icon" href="<? echo $url ?>/assets/media/logos/favicon.ico" />
@@ -93,75 +94,35 @@ License: You must have a valid license purchased only from themeforest(the above
 		<!-- begin:: Page -->
 <!-- end:: Header -->
 					<? require 'minor/header.php'; ?>
-						<!-- end:: Content Head -->
+					
+					<div class="kt-portlet kt-portlet--mobile">
+	<div class="kt-portlet__head kt-portlet__head--lg">
+		<div class="kt-portlet__head-label">
+			<span class="kt-portlet__head-icon">
+				<i class="kt-font-brand flaticon2-line-chart"></i>
+			</span>
+			<h3 class="kt-portlet__head-title">
+				Column Rendering
+			</h3>
+		</div>
+		<div class="kt-portlet__head-toolbar">
+            <div class="kt-portlet__head-wrapper">
+	
+</div>		</div>
+	</div>
 
-						<!-- begin:: Content -->
-						
-						
-						
-						<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
-
-							<!--Begin::App-->
-							<div class="kt-grid kt-grid--desktop kt-grid--ver kt-grid--ver-desktop kt-app">
-
-								<!--Begin:: App Aside Mobile Toggle-->
-								<button class="kt-app__aside-close" id="kt_contact_aside_close">
-									<i class="la la-close"></i>
-								</button>
-
-								<!--End:: App Aside Mobile Toggle-->
-							
-								<!--Begin:: App Aside-->
-								
-								<!--End:: App Aside-->
-
-								<!--Begin:: App Content-->
-								<div class="kt-grid__item kt-grid__item--fluid kt-app__content">
-
-									<!--Begin::Section-->
-									<div class="row">
-										 <?
-											 	
-														
-			                      $query = $db->prepare("SELECT * FROM class where status=1 and  branchID=? order by classID ASC " );
-			                      $query->execute(array($dt_courseID));
-			                      if ( $query->rowCount() ){
-			                      foreach( $query as $row ){
-				                      
-										$class_name		=$row['class_name'];
-										$season		=$row['season'];
-										$course_type		=$row['course_type'];
-										$courses		=$row['courses'];
-										$timing		=$row['timing'];
-										$classroom		=$row['classroom'];
-										$classID		=$row['classID'];
-										
-										
-									?>
-										
-										<div class="col-xl-4">
-
-											<!--Begin::Portlet-->
-											<div class="kt-portlet kt-portlet--height-fluid">
-												<div class="kt-portlet__head kt-portlet__head--noborder">
-													<div class="kt-portlet__head-label">
-														
-													</div>
-													
-												</div>
-												<div class="kt-portlet__body">
-
-													<!--begin: Datatable -->
-					<div class="kt-section">
+	<div class="kt-portlet__body">
+				<!--begin: Datatable -->
+				<div class="kt-section">
 												<div class="kt-section__content">
 													<table class="table table-bordered">
 														<thead>
 															<tr>
-																<th>appointmentID</th>
-																<th>doctorNo</th>
-																<th>patientNo</th>
-																<th>dateAppointment</th>
-																<th>appointmentDetail</th>			
+																<th>Appointment ID</th>
+																<th>Doctor</th>
+																<th>Patient</th>
+																<th>Date</th>
+																<th>Appointment Detail</th>			
 
 															</tr>
 														</thead>
@@ -175,15 +136,42 @@ License: You must have a valid license purchased only from themeforest(the above
 																foreach( $query as $rows ){
 																	
 																	$appointmentID		= $rows['appointmentID'];
-																	$doctorNo		= $rows['doctorNo'];
-																	$patientNo= $rows['patientNo'];
+																	$doctorNo			= $rows['doctorNo'];
+																	$patientNo			= $rows['patientNo'];
 																	$dateAppointment	= $rows['dateAppointment'];
-																	$appointmentDetail		= $rows['appointmentDetail']
+																	$appointmentDetail	= $rows['appointmentDetail'];
+
+
+
+																	$queryDoctor = $db->prepare("SELECT * from doctors where doctorID = ?");
+																	$queryDoctor->execute(array($doctorNo));
+																	if ( $queryDoctor->rowCount() ){
+																	foreach( $queryDoctor as $rowsDoctor ){
+																	
+																	$doctorName		= $rowsDoctor['doctorName'];
+																	$doctorSurname	= $rowsDoctor['doctorSurname'];
+																	
+
+																	}}
+
+
+																	$queryPatient = $db->prepare("SELECT * from patients where patientID = ?");
+																	$queryPatient->execute(array($patientNo));
+																	if ( $queryPatient->rowCount() ){
+																	foreach( $queryPatient as $rowsPatient ){
+																	
+																	$patientName		= $rowsPatient['patientName'];
+																	$patientSurname	= $rowsPatient['patientSurname'];
+																	
+
+																	}}
+
+
 																?>
 															<tr >
 																<td><? echo $appointmentID ?></td>
-																<td><? echo $doctorNo ?></td>
-																<td ><? echo $patientNo ?></td>
+																<td><? echo $doctorName ?> <? echo $doctorSurname ?></td>
+																<td ><? echo $patientName ?> <? echo $patientSurname ?></td>
 																<td ><? echo $dateAppointment ?></td>
 																<td ><? echo $appointmentDetail ?></td>
 																
@@ -197,99 +185,16 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 		<!--end: Datatable -->
-										</div>
-										
-                                        <?php };}else {echo '<tr><td colspan="9" class="null">Henüz Yönetici Bulunmamaktadır.</td></tr>';} ?>
-										
-									</div>
-
-									<!--End::Section-->
-
-									<!--Begin::Section-->
-									
-
-								</div>
-
-								<!--End:: App Content-->
-							</div>
-
-							<!--End::App-->
-						</div>
-						
-						
-						
-						<!-- end:: Content -->
-					</div>
-
-					<!-- begin:: Footer -->
+			</div>
+</div>	
 					<? require 'minor/footer.php'; ?>
-
 					<!-- end:: Footer -->
 				</div>
 			</div>
 		</div>
 
 		<!-- end:: Page -->
-<div class="modal fade- modal-sticky-bottom-right" id="kt_chat_modal" role="dialog" data-backdrop="false">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="kt-chat">
-						<div class="kt-portlet kt-portlet--last">
-							<div class="kt-portlet__head">
-								<div class="kt-chat__head ">
-									<div class="kt-chat__left">
-										<div class="kt-chat__label">
-											<a href="#" class="kt-chat__title">Jason Muller</a>
-											<span class="kt-chat__status">
-												<span class="kt-badge kt-badge--dot kt-badge--success"></span> Active
-											</span>
-										</div>
-									</div>
-									<div class="kt-chat__right">
-										<div class="dropdown dropdown-inline">
-											<button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<i class="flaticon-more-1"></i>
-											</button>
-											
-										</div>
-										<button type="button" class="btn btn-clean btn-sm btn-icon" data-dismiss="modal">
-											<i class="flaticon2-cross"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-							<div class="kt-portlet__body">
-								<div class="kt-scroll kt-scroll--pull" data-height="410" data-mobile-height="300">
-									<div class="kt-chat__messages kt-chat__messages kt-chat__messages--modal">
-									   <ol class="mesaj"> </ol>
-									</div>
-								</div>
-							</div>
-							<div class="kt-portlet__foot">
-								<div class="kt-chat__input">
-									
-												<form class="msgForm" id="asd" method="post" enctype="multipart/form-data">
-									<div class="kt-chat__editor">
-														<input type="text" hidden="true" name="web" value="<? echo $web ?>">
-														<input type="text" hidden="true" name="gondereninID" value="<? echo $_SESSION['course_adminID'] ?>">
-														<input type="text" hidden="true" name="gonderenadi" value="<? echo $dt_name ?>">
-														<textarea style="height: 50px"  id="textarea"  placeholder="Mesaj yaz" name="mesaj" required></textarea>
-									</div>
-									<div class="kt-chat__toolbar">
-										<div class="kt_chat__tools">
-										</div>
-										<div class="kt_chat__actions">
-															<button type="submit" class="btn btn-brand btn-md btn-upper btn-bold gokhanAq">Gönder</button>
-										</div>
-									</div>
-									</form>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
 		
 
 		<!-- end::Demo Panel -->
@@ -314,18 +219,16 @@ License: You must have a valid license purchased only from themeforest(the above
 					}
 				}
 			};
-						document.getElementById("asd").onkeypress = function(e) {
-  var key = e.charCode || e.keyCode || 0;     
-  if (key == 13) {
-    e.preventDefault();
-  }
-}
 		</script>
 
 		<!-- end::Global Config -->
 
 		<!--begin:: Global Mandatory Vendors -->
-<script src="<? echo $url ?>/assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+
+		<!-- end::Global Config -->
+
+		<!--begin:: Global Mandatory Vendors -->
+		<script src="<? echo $url ?>/assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
 		<script src="<? echo $url ?>/assets/vendors/general/popper.js/dist/umd/popper.js" type="text/javascript"></script>
 		<script src="<? echo $url ?>/assets/vendors/general/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
 		<script src="<? echo $url ?>/assets/vendors/general/js-cookie/src/js.cookie.js" type="text/javascript"></script>
@@ -396,123 +299,23 @@ License: You must have a valid license purchased only from themeforest(the above
 
 		<!--end::Global Theme Bundle -->
 
+		<!--begin::Page Vendors(used by this page) -->
+		<script src="<? echo $url ?>/assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+
+		<!--end::Page Vendors -->
+
 		<!--begin::Page Scripts(used by this page) -->
-		<script src="<? echo $url ?>/assets/js/demo1/pages/custom/apps/chat/chat.js" type="text/javascript"></script>
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-app.js"></script>
+		<script src="<? echo $url ?>/assets/js/demo1/pages/crud/datatables/data-sources/html.js" type="text/javascript"></script>
 
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-auth.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-firestore.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-functions.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-messaging.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-storage.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-performance.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/6.2.2/firebase-database.js"></script>
-<script type="text/javascript">
-
-
-
-            $(document).ready(function(){
-
-			var mesaj = "";
-            var gonderen = "<?php echo $dt_email ?>";
-            var name = "<?php echo $dt_name ?>";
-            var userid = "<?php echo $_SESSION['course_adminID'] ?>";
-            var userid2 = $( "#you" ).val();
-            var roomName;
-
-
-                if (userid < userid2)
-                    roomName = userid + "-" + userid2;
-                else
-                    roomName = userid2 + "-" + userid;
-                
-                
-        
-
-              var bakicimRef = firebase.database().ref("Chats/").child(roomName);
-
-                bakicimRef.on("child_added", function(data) {
-                  
-                    
-                    if(data.val().gonderen== gonderen)
-                    $('.mesaj').append('<div class="kt-chat__message kt-chat__message--right"><div class="kt-chat__user"><span class="kt-chat__datetime">'+data.val().zaman+'</span><a  class="kt-chat__username">Ben</span></a><span class="kt-userpic kt-userpic--circle kt-userpic--sm"><img src="data:image/jpg;base64,<? echo $meimage[0] ?>" alt="image"></span></div><div class="kt-chat__text kt-bg-light-brand">'+data.val().mesaj+'</div></div>');
-                    else
-                    $('.mesaj').append('<div class="kt-chat__message"><div class="kt-chat__user"><span class="kt-userpic kt-userpic--circle kt-userpic--sm"><img src="data:image/jpg;base64,<? echo $youimage[0] ?>" alt="image"></span><a  class="kt-chat__username"><? echo $younames ?> <? echo $yousurnames ?></span></a><span class="kt-chat__datetime">'+data.val().zaman+'</span></div><div class="kt-chat__text kt-bg-light-success">'+data.val().mesaj+'</div></div>');
-                    
-                    
-                });
-
-                $('.msgForm').submit(function(e){
-                    e.preventDefault();
-
-                    var values = $(this).serialize();
-
-                    $.ajax({
-                        url: "<? echo $url ?>/admins/oneSignal",
-                        type: "post",
-                        data: values ,
-                        success: function (response) {
-								mesaj = $('#textarea').val();
-
-                              var d = new Date();   
-                              var zaman = d.toLocaleString();
-							
-							var d = new Date(); 
-							var zaman = d.getDate() + "-"
-							                + (d.getMonth()+1)  + "-" 
-							                + d.getFullYear() + " ("  
-							                + d.getHours() + ":"  
-							                + d.getMinutes() + ":" 
-							                + d.getSeconds()+")";
-							                                    
-                              firebase.database().ref('Chats/').child(roomName).push().set({
-                                gonderen: gonderen,
-                                mesaj: mesaj,
-                                userID: userid,
-                                name: name,
-                                zaman: zaman
-                                  
-                              });
-
-                              $('#textarea').val("");
-                           // you will get response from your php page (what you echo or print)                 
-
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                           console.log(textStatus, errorThrown);
-                        }
-
-
-                    });
-                });
-            });
-		
- 		 var config = {
-  apiKey: "AIzaSyDBRf4ovxCm6pdtyUH0twkoyfEYAgRz9W4",
-  authDomain: "crms-adac7.firebaseapp.com",
-  databaseURL: "https://crms-adac7.firebaseio.com",
-  projectId: "crms-adac7",
-  storageBucket: "crms-adac7.appspot.com",
-  messagingSenderId: "890687676781",
-  appId: "1:890687676781:web:5eb07781c8d02f97"
-  };
-  firebase.initializeApp(config);
-	console.log(firebase.app()); 
-			
-
-
-			
-			
-
-	
-	</script>
 		<!--end::Global App Bundle -->
+
+
+		<!--begin::Page Vendors(used by this page) -->
+                                                  <!--end::Page Vendors -->
+         
+                    <!--begin::Page Scripts(used by this page) -->
+                          
+                        <!--end::Page Scripts -->
 	</body>
 
 	<!-- end::Body -->
