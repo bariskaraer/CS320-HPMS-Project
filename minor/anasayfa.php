@@ -129,7 +129,7 @@
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
 															<span class="kt-widget26__number"><? echo $kayit ?></span>
-															<span class="kt-widget26__desc">Kayıtlı Öğrenci</span>
+															<span class="kt-widget26__desc">Doctor Information</span>
 														</div>
 														
 													</div>
@@ -140,7 +140,7 @@
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
 															<span class="kt-widget26__number"><? echo $class ?></span>
-															<span class="kt-widget26__desc">Sınıflar</span>
+															<span class="kt-widget26__desc">Patient Information</span>
 														</div>
 													
 													</div>
@@ -153,7 +153,7 @@
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
 															<span class="kt-widget26__number"><? echo $banch ?></span>
-															<span class="kt-widget26__desc">Şube</span>
+															<span class="kt-widget26__desc">Admin Information</span>
 														</div>
 														
 													</div>
@@ -165,7 +165,7 @@
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
 															<span class="kt-widget26__number"><? echo $season ?></span>
-															<span class="kt-widget26__desc">Sezonlar</span>
+															<span class="kt-widget26__desc">?</span>
 														</div>
 														
 													</div>
@@ -178,7 +178,7 @@
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
 															<span class="kt-widget26__number"><? echo $devam ?></span>
-															<span class="kt-widget26__desc">Devam Eden Görüşmeler</span>
+															<span class="kt-widget26__desc">?2</span>
 														</div>
 														
 													</div>
@@ -190,7 +190,7 @@
 													<div class="kt-widget26">
 														<div class="kt-widget26__content">
 															<span class="kt-widget26__number"><? echo $bekleme ?></span>
-															<span class="kt-widget26__desc">Beklemede Olan Görüşmeler</span>
+															<span class="kt-widget26__desc">?3</span>
 														</div>
 														
 													</div>
@@ -209,7 +209,7 @@
 										<div class="kt-portlet__head">
 											<div class="kt-portlet__head-label">
 												<h3 class="kt-portlet__head-title">
-													Kayıt Olan Öğrenciler
+													Add patient
 												</h3>
 											</div>
 											<div class="kt-portlet__head-toolbar">
@@ -222,67 +222,7 @@
 												</ul>
 											</div>
 										</div>
-										<div class="kt-portlet__body">
-											<div class="tab-content">
-												<div class="tab-pane active" id="kt_widget4_tab1_content">
-													<div class="kt-widget4">
-														
-													<?
-			                      $query = $db->prepare("SELECT * FROM students, interview where students.students_id=interview.students_id and interview.interview_status='Kayıt' LIMIT 3" );
-			                      $query->execute(array());
-			                      if ( $query->rowCount() ){
-			                      foreach( $query as $row ){
-				                      
-				                     	
-												$students_name 		= $row['name'];
-												$students_surname 	= $row['surname'];
-												$students_phone 	= $row['phone'];
-												$students_email		= $row['email'];
-												$gender				= $row['gender'];
-												
-												$edu_type			= $row['edu_type'];
-												$edu_season			= $row['edu_season'];
-												$edu_course			= $row['edu_course'];
-												
-												
-												
-												$students_id	= $row['students_id'];
 										
-										
-									?>	
-														
-														
-														
-														
-														
-														<div class="kt-widget4__item">
-															<div class="kt-widget4__pic kt-widget4__pic--pic">
-															<?php 
-																if ($gender=='Kadın'){echo '<img src="'.$url.'/assets/media/users/100_4.jpg"  >';}
-																elseif ( $gender=='Erkek'){echo '<img src="'.$url.'/assets/media/users/100_1.jpg"  >';}
-															?>
-															</div>
-															<div class="kt-widget4__info">
-																<a href="#" class="kt-widget4__username">
-																	<? echo $students_name ?> <? echo $students_surname ?>
-																</a>
-																<p class="kt-widget4__text">
-																	<? echo $edu_course ?>
-																</p>
-															</div>
-															<a href="<? echo $url ?>/users/profile/<? echo $students_id ?>" class="btn btn-sm btn-label-brand btn-bold">Profil</a>
-														</div>
-														
-														
-                                        <?php };}else {echo '<tr><td colspan="10" class="null">Henüz Görüşme Bulunmamaktadır.</td></tr>';} ?>
-														
-														
-														
-													</div>
-												</div>
-												
-											</div>
-										</div>
 									</div>
 
 									<!--end:: Widgets/New Users-->
