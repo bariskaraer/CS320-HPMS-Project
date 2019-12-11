@@ -142,9 +142,18 @@
 																<td><? echo $patientName ?> <? echo $patientSurname ?></td>
 																<td ><? echo $patientAge ?></td>
 																<td ><? echo $patientTreatmentPlan ?></td>
-																<td >link for patient Complaints</td>
-																<td >patient Appointment Link</td>
-																<td >delete Patient Button </td>
+																<td ><a href="http://localhost/complaints/list" 
+																class="btn btn-label-success btn-bold btn-sm btn-icon-h kt-margin-l-10">
+																	Patient's Complaints
+																</a></td>
+																<td ><a href="http://localhost/complaints/list" 
+																class="btn btn-label-primary btn-bold btn-sm btn-icon-h kt-margin-l-10">
+																	Patient's Appointments
+																</a></td>
+																<td ><a href="http://localhost/complaints/list" 
+																class="btn btn-label-danger btn-bold btn-sm btn-icon-h kt-margin-l-10">
+																	Delete Patient
+																</a></td>
 															</tr>
 															
 															
