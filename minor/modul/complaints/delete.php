@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
-</html>http   
+<?php	
+	$complaintsID = $r3;
+	$query = $db->prepare("DELETE FROM complaints where complaintsID=?");
+    $delete=$query->execute(array($complaintsID));
+    Header ("Location: $url/complaints/list");
+	?>
