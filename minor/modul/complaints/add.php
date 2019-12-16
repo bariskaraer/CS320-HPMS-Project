@@ -3,20 +3,23 @@
 
 if ($_POST){
 
-	$complaint 		= $_POST["complaint"];
-	$subject 		= $_POST["subject"];
-	$doctorID  	= $_POST["doctorID"];
-	$patientID		=$_POST["patientID"];
-	$regDate=date("Y/m/d H:m:s");
-
-
-	$query = $db->prepare("INSERT INTO complaints(complaintPatientNo,header,messageComplaint,complaintDoctorNo,dateComplaint) values (?,?,?,?,?)");
+	$complaintc 		= $_POST["complaint"];
+	$subjectc 		= $_POST["subject"];
+	$doctorIDc  	= $_POST["doctorID"];
+	$patientIDc		=$_POST["patientID"];
+	$complaintDatec		=$_POST["complaintDate"];
 	
-	$insert=$query->execute(array($patientID,$subject,$complaint,$doctorID,$regDate));
+
+	
+
+
+	$query = $db->prepare("INSERT INTO complaints(patientNo,headerMessage,messageComplaint,doctorNo,dateComplaint) values (?,?,?,?,?)");
+	
+	$insert=$query->execute(array($patientIDc,$subjectc,$complaintc,$doctorIDc,$complaintDatec));
 		
 
-
-	Header ("Location: $url/home");
+	// Header ("Location: $url/home");
+	
 
 
 }
@@ -25,6 +28,8 @@ if ($_POST){
 	setcookie("error",$error,time()+2);
 	Header ("Location: ".$_SERVER['HTTP_REFERER']);
 }
+
+
 ?>
 <!DOCTYPE html>
 
@@ -162,7 +167,7 @@ if ($_POST){
 															?>
 															<option value="0" selected>Please Select a Doctor 
 															<?php foreach ($listS as $list) { ?>
-																<option value="<?php echo $list['doctorID']; ?>"><?php echo $list['doctorName']; ?> <?php echo $list['doctorSurname']; ?></option> 
+																<option value="<?php echo $list['doctorsID']; ?>"><?php echo $list['doctorName']; ?> <?php echo $list['doctorSurname']; ?></option> 
 																<?php } ?>
 														</select>
 				
@@ -181,6 +186,14 @@ if ($_POST){
 													<input type="text" id="complaintinput1" class="form-control " name="complaint">
 													
 												</div>
+
+												  
+														<div class="form-group">
+															<label for="complaintinput1">Complaint Date : <span class="danger">*</span></label>
+															<input type="date" id="complaintinput1" class="form-control " name="complaintDate" >
+															
+														</div>
+													
 													
 												
 													
