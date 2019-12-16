@@ -19,8 +19,12 @@ if ($_POST){
 
 $regDate=date("Y/m/d");
 
-$queryss = $db->prepare("INSERT INTO patients(patientName,patientSurname,patientAge,dateOfBirth,bloodType,patientAddress,telephoneNumber,patientTreatmentPlan,medicineProblems,identityNumber) values (?,?,?,?,?,?,?,?,?,?)");
-$insertss=$queryss->execute(array($patientName,$patientSurname,$patientAge,$dateofbirth,$bloodType,$address,$telephoneNumber,$treatmentPlan,$medicineProblems,$identityNumber));
+
+$queryss = $db->prepare("UPDATE patients SET patientName=?,patientSurname=?,patientAge=?,dateOfBirth=?,bloodType=?,patientAddress=?,telephoneNumber=?,patientTreatmentPlan=?,medicineProblems=?,identityNumber=? ");
+$queryss->execute(array($patientName,$patientSurname,$patientAge,$dateofbirth,$bloodType,$address,$telephoneNumber,$treatmentPlan,$medicineProblems,$identityNumber));
+Header ("Location: $url/patients/list");
+
+
 
 
 
