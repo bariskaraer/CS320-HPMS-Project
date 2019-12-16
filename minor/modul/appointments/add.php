@@ -16,14 +16,13 @@ $doctorID		=$_POST["doctorID"];
 		
 		$regDate=date("Y/m/d H:m:s");
 					
-	$query = $db->prepare("INSERT INTO appointments(doctorNo,patientNo,dateAppointment,appointmentDetail) 
-	values (?,?,?,?)");
+	$query = $db->prepare("INSERT INTO appointments(doctorNo,patientNo,dateAppointment,appointmentDetail) values (?,?,?,?)");
 	
 $insert=$query->execute(array($doctorID,$patientID,$appointmentDate,$appointmentDetails));
 		
 
 
-	Header ("Location: $url/home");
+	Header ("Location: $url/appointments/list");
 
 
 }
@@ -188,7 +187,7 @@ $insert=$query->execute(array($doctorID,$patientID,$appointmentDate,$appointment
 															?>
 															<option value="0" selected>Please Select a Doctor 
 															<?php foreach ($listS as $list) { ?>
-																<option value="<?php echo $list['doctorID']; ?>"><?php echo $list['doctorName']; ?> <?php echo $list['doctorSurname']; ?></option> 
+																<option value="<?php echo $list['doctorsID']; ?>"><?php echo $list['doctorName']; ?> <?php echo $list['doctorSurname']; ?></option> 
 																<?php } ?>
 														</select>
 												</div>
