@@ -1,5 +1,6 @@
 <?php	
 	$doctorID = $r3;
 	$query = $db->prepare("DELETE FROM doctors where doctorsID=?");
-	$delete=$query->execute(array($doctorID));
+    $delete=$query->execute(array($doctorID));
+    Header ("Location: $url/doctors/list");
 	?>
