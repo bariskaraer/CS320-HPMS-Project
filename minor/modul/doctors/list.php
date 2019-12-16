@@ -1,4 +1,4 @@
-<?php if (empty($_SESSION['course_adminID'])){Header ("Location: ".$url."/giris");}?>
+<?php if (empty($_SESSION['adminID'])){Header ("Location: ".$url."/login");}?>
 <!DOCTYPE html>
 
 <!-- 
@@ -102,7 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<i class="kt-font-brand flaticon2-line-chart"></i>
 			</span>
 			<h3 class="kt-portlet__head-title">
-				Column Rendering
+				Doctors List
 			</h3>
 		</div>
 		<div class="kt-portlet__head-toolbar">
@@ -111,32 +111,22 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>		</div>
 	</div>
 
-	<!--begin::Portlet-->
-	<div class="kt-portlet">
-			<div class="kt-portlet__head">
-				<div class="kt-portlet__head-label">
-					<h3 class="kt-portlet__head-title">
-						Small Table
-					</h3>
-				</div>
-			</div>
-			<div class="kt-portlet__body">
-				<!--begin: Datatable -->
-					<div class="kt-section">
-												<div class="kt-section__content">
+	<div class="kt-portlet__body">
+				<!--begin::Section-->
+				<div class="kt-section">
+				<div class="kt-section__content">
 													<table class="table table-bordered">
 														<thead>
 															<tr>
-																<th>doctor ID</th>
-																<th>Doctor Name</th>
-																<th>Doctor Surname</th>
-																<th>username</th>
-																<th>Password</th>	
+																
+																<th>Doctor Name Surname</th>
 																<th>Date of Birth</th>
-																<th>address</th>
+																<th>Address</th>
 																<th>Telephone Number</th>
-																<th>patients</th>
-																<th>identityNumber</th>							
+																<th>Patients</th>
+																<th>Identity Number</th>
+																<th>Actions</th>
+																			
 															</tr>
 														</thead>
 														<tbody>
@@ -148,11 +138,9 @@ License: You must have a valid license purchased only from themeforest(the above
 																if ( $query->rowCount() ){
 																foreach( $query as $rows ){
 																	
-																	$doctorID		= $rows['doctorID'];
+																	$doctorsID		= $rows['doctorsID'];
 																	$doctorName		= $rows['doctorName'];
 																	$doctorSurname= $rows['doctorSurname'];
-																	$username	= $rows['username'];
-																	$passwordDoctor		= $rows['passwordDoctor'];
 																	$dateOfBirth		= $rows['dateOfBirth'];
 																	$address		= $rows['address'];
 																	$telephoneNumber		= $rows['telephoneNumber'];
@@ -161,15 +149,28 @@ License: You must have a valid license purchased only from themeforest(the above
 																
 																?>
 															<tr >
-																<td><? echo $doctorID ?></td>
+																
 																<td><? echo $doctorName ?> <? echo $doctorSurname ?></td>
-																<td ><? echo $username ?></td>
-																<td ><? echo $passwordDoctor ?></td>
 																<td ><? echo $dateOfBirth ?></td>
 																<td ><? echo $address ?></td>
 																<td ><? echo $telephoneNumber ?></td>
 																<td ><? echo $patients ?></td>
 																<td ><? echo $identityNumber ?></td>
+																<td>
+																
+																<div class="dropdown dropdown-inline show">
+																	<button type="button" class="btn btn-brand btn-elevate-hover btn-icon btn-sm btn-icon-md btn-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+																		<i class="flaticon-more-1"></i>
+																	</button>
+																	<div class="dropdown-menu dropdown-menu-right " x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+																		<a style="color: black" class="dropdown-item" href="<? echo $url ?>/doctors/edit/<? echo $row['doctorsID'] ?>" class="btn btn-outline-danger btn-min-width btn-glow 1"> Edit</a>
+																		<a style="color: black"  href="<? echo $url ?>/doctors/delete/<? echo $row['doctorsID'] ?>" class="dropdown-item sil"> Delete</a>
+																		
+																	</div>
+																</div>
+
+
+																</td>
 															</tr>
 															
 															
@@ -178,11 +179,10 @@ License: You must have a valid license purchased only from themeforest(the above
 														</tbody>
 													</table>
 												</div>
-											</div>
-		<!--end: Datatable -->
+					
+				</div>
+				<!--end::Section-->
 			</div>
-		</div>	
-		<!--end::Portlet-->
 </div>	
 					<? require 'minor/footer.php'; ?>
 					<!-- end:: Footer -->
