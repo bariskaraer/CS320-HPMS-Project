@@ -102,7 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<i class="kt-font-brand flaticon2-line-chart"></i>
 			</span>
 			<h3 class="kt-portlet__head-title">
-				Column Rendering
+				Appointment List
 			</h3>
 		</div>
 		<div class="kt-portlet__head-toolbar">
@@ -135,7 +135,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																if ( $query->rowCount() ){
 																foreach( $query as $rows ){
 																	
-																	$appointmentID		= $rows['appointmentID'];
+																	$appointmentID		= $rows['appointmentsID'];
 																	$doctorNo			= $rows['doctorNo'];
 																	$patientNo			= $rows['patientNo'];
 																	$dateAppointment	= $rows['dateAppointment'];
@@ -143,7 +143,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
 
-																	$queryDoctor = $db->prepare("SELECT * from doctors where doctorID = ?");
+																	$queryDoctor = $db->prepare("SELECT * from doctors where doctorsID = ?");
 																	$queryDoctor->execute(array($doctorNo));
 																	if ( $queryDoctor->rowCount() ){
 																	foreach( $queryDoctor as $rowsDoctor ){
