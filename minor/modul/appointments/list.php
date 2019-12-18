@@ -122,7 +122,8 @@ License: You must have a valid license purchased only from themeforest(the above
 																<th>Doctor</th>
 																<th>Patient</th>
 																<th>Date</th>
-																<th>Appointment Detail</th>			
+																<th>Appointment Detail</th>	
+																<th>Actions</th>			
 
 															</tr>
 														</thead>
@@ -174,7 +175,22 @@ License: You must have a valid license purchased only from themeforest(the above
 																<td ><? echo $patientName ?> <? echo $patientSurname ?></td>
 																<td ><? echo $dateAppointment ?></td>
 																<td ><? echo $appointmentDetail ?></td>
+
+																<td>
 																
+																<div class="dropdown dropdown-inline show">
+																	<button type="button" class="btn btn-brand btn-elevate-hover btn-icon btn-sm btn-icon-md btn-circle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+																		<i class="flaticon-more-1"></i>
+																	</button>
+																	<div class="dropdown-menu dropdown-menu-right " x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(-149px, 33px, 0px);">
+																		<a style="color: black" class="dropdown-item" href="<? echo $url ?>/appointments/edit/<? echo $appointmentID ?>" class="btn btn-outline-danger btn-min-width btn-glow 1"> Edit</a>
+																		<a style="color: black"  href="<? echo $url ?>/appointments/delete/<? echo $appointmentID ?>" class="dropdown-item sil"> Delete</a>
+																		
+																	</div>
+																</div>
+
+
+																</td>
 															</tr>
 															
 															
