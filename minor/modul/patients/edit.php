@@ -4,7 +4,8 @@
 if ($_POST){
 	
 	
-	
+	$patientsIDddd=$r3;
+
 	$patientName 				= $_POST['patientName'];
 	$patientSurname 			= $_POST['patientSurname'];
 	$dateofbirth 				= $_POST['dateOfBirth'];
@@ -20,8 +21,8 @@ if ($_POST){
 $regDate=date("Y/m/d");
 
 
-$queryss = $db->prepare("UPDATE patients SET patientName=?,patientSurname=?,patientAge=?,dateOfBirth=?,bloodType=?,patientAddress=?,telephoneNumber=?,patientTreatmentPlan=?,medicineProblems=?,identityNumber=? ");
-$queryss->execute(array($patientName,$patientSurname,$patientAge,$dateofbirth,$bloodType,$address,$telephoneNumber,$treatmentPlan,$medicineProblems,$identityNumber));
+$queryss = $db->prepare("UPDATE patients SET patientName=?,patientSurname=?,patientAge=?,dateOfBirth=?,bloodType=?,patientAddress=?,telephoneNumber=?,patientTreatmentPlan=?,medicineProblems=?,identityNumber=? where patientID =?");
+$queryss->execute(array($patientName,$patientSurname,$patientAge,$dateofbirth,$bloodType,$address,$telephoneNumber,$treatmentPlan,$medicineProblems,$identityNumber,$patientsIDddd));
 Header ("Location: $url/patients/list");
 
 
@@ -128,7 +129,7 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
         <?
 
 $patientsID=$r3;
-$query = $db->prepare("Select * from doctors where doctorsID=?");
+$query = $db->prepare("Select * from patients where patientID=?");
 $query->execute(array($patientsID));
 if($row = $query->fetch())
 {
@@ -211,7 +212,7 @@ if($row = $query->fetch())
 													<div class="col-md-6">   
 														<div class="form-group">
 															<label for="complaintinput1">Patient Name : <span class="danger">*</span></label>
-															<input type="text" id="complaintinput1" class="form-control " name="patientName" value="<? echo $patientName ?>">
+															<input type="text" id="complaintinput1" class="form-control " name="patientName" value="<? echo $patientName ?>" readonly>
 															
 														</div>
 													</div>
@@ -219,7 +220,7 @@ if($row = $query->fetch())
 													<div class="col-md-6">   
 														<div class="form-group">
 															<label for="complaintinput2">Patient Surname : <span class="danger">*</span></label>
-															<input type="text" id="complaintinput2" class="form-control "  name="patientSurname" value="<? echo $patientSurname ?>">
+															<input type="text" id="complaintinput2" class="form-control "  name="patientSurname" value="<? echo $patientSurname ?>" readonly>
 														</div>
 													</div>
 										</div>
@@ -240,7 +241,7 @@ if($row = $query->fetch())
 													<div class="col-md-6">   
 														<div class="form-group">
 															<label for="complaintinput1">Date of Birth : <span class="danger">*</span></label>
-															<input type="date" id="complaintinput1" class="form-control " name="dateOfBirth" value="<? echo $dateOfBirth ?>">
+															<input type="date" id="complaintinput1" class="form-control " name="dateOfBirth" value="<? echo $dateOfBirth ?>" readonly>
 															
 														</div>
 													</div>
