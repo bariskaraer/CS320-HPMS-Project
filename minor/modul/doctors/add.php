@@ -199,7 +199,7 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 	                                        	<div class="col-md-6">   
 													<div class="form-group">
 														<label for="complaintinput2">Password : <span class="danger">*</span></label>
-														<input type="text" id="complaintinput2" class="form-control "  name="password">
+														<input type="password" id="complaintinput2" class="form-control "  name="password">
 													</div>
 												</div>
 
@@ -220,7 +220,7 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 	                                        	<div class="col-md-6">   
 													<div class="form-group">
 														<label for="complaintinput1">Date of Birth : <span class="danger">*</span></label>
-														<input type="text" id="complaintinput1" class="form-control " name="dateOfBirth" >
+														<input type="date" id="complaintinput1" class="form-control " name="dateOfBirth" >
 														
 													</div>
 												</div>
@@ -235,27 +235,21 @@ Header ("Location: ".$_SERVER['HTTP_REFERER']);
 	                                        	<div class="col-md-6">   
 													<div class="form-group">
 														<label for="complaintinput1">Telephone Number : <span class="danger">*</span></label>
-														<input type="text" id="complaintinput1" class="form-control " name="telephoneNumber" >
+														<input type="number" id="complaintinput1" class="form-control " name="telephoneNumber" >
 														
 													</div>
 												</div>
-	                                        	<div class="col-md-6">   
-													<div class="form-group">
-														<label for="complaintinput2">Patients : <span class="danger">*</span></label>
-														<input type="text" id="complaintinput2" class="form-control "  name="patients">
-													</div>
-												</div>
-															</div>
-															<div class="row"> 
-	                                        	<div class="col-md-6">   
+
+												<div class="col-md-6">   
 													<div class="form-group">
 														<label for="complaintinput1">Identity Number : <span class="danger">*</span></label>
-														<input type="text" id="complaintinput1" class="form-control " name="identityNumber" >
+														<input type="number" id="complaintinput1" class="form-control " name="identityNumber" >
 														
 													</div>
 												</div>
 	                                        	
 															</div>
+															
 										
 														</div>
 													</div>
