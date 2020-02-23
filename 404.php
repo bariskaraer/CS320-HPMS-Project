@@ -19,7 +19,7 @@ if(empty($r1)){$in="index.php";}
 	
 
 		//** Client Side **//
-		
+		//
 		
 	if($r1=='logout') { $in='minor/logout.php'; }
 	elseif($r1=='login') { $in='minor/login.php'; }
